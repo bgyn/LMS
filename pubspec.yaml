@@ -45,6 +45,7 @@ dependencies:
   permission_handler: ^11.3.1
   dio: ^5.7.0
   json_annotation: ^4.9.0
+  shared_preferences: ^2.3.5
 
 dev_dependencies:
   flutter_test:
@@ -84,12 +85,27 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/fonts/PlusJakartaSans-ExtraLight.ttf
+          style: normal
+          weight: 200
+        - asset: assets/fonts/PlusJakartaSans-Light.ttf
+          style: normal
+          weight: 300
+        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
+          style: normal
+          weight: 400
+        - asset: assets/fonts/PlusJakartaSans-Medium.ttf
+          style: normal
+          weight: 500
+        - asset: assets/fonts/PlusJakartaSans-SemiBold.ttf
+          style: normal
+          weight: 600
+        - asset: assets/fonts/PlusJakartaSans-Bold.ttf
+          style: normal
+          weight: 700
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
