@@ -23,8 +23,10 @@ class Strings {
   //auth
   static const signIn = "Sign In";
   static const signUp = "Sign Up";
+  static const fullName = "Full Name";
   static const email = "Email";
   static const password = "Password";
+  static const confirmPassword = "Confirm Password";
   static const signInWithAccount = "Please sign in with your account";
   static const createAccount =
       "Create an acount to begin your learning journey";

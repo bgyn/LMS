@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lms/config/theme/theme.dart';
 import 'package:lms/core/constants/strings.dart';
 import 'package:lms/core/extension/estension.dart';
 import 'package:lms/core/widgets/button.dart';
@@ -68,6 +70,39 @@ class SignInPage extends StatelessWidget {
             Button(
               title: Strings.signIn,
               onTap: () {},
+            ),
+            SizedBox(
+              height: 0.05.h(context),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  Strings.dontHaveAccount,
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        fontSize: 0.012.toRes(context),
+                        color: Colors.black54,
+                      ),
+                  textAlign: TextAlign.end,
+                ),
+                SizedBox(
+                  width: 0.05.w(context),
+                ),
+                InkWell(
+                  onTap: () {
+                    context.go("/signup");
+                  },
+                  child: Text(
+                    Strings.signupHere,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          fontSize: 0.012.toRes(context),
+                          fontWeight: FontWeight.w600,
+                          color: ColorPalette.primaryColor,
+                        ),
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
