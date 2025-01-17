@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lms/core/utils/shared_utility.dart';
-import 'package:lms/feature/auth/presentation/sign_in_page.dart';
-import 'package:lms/feature/auth/presentation/sign_up_page.dart';
+import 'package:lms/feature/auth/presentation/pages/sign_in_page.dart';
+import 'package:lms/feature/auth/presentation/pages/sign_up_page.dart';
 import 'package:lms/feature/onboarding/presentation/onboarding_page.dart';
 import 'package:lms/feature/splash/presentation/splash_page.dart';
 

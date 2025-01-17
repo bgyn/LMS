@@ -19,4 +19,18 @@ class Strings {
       "Join a community of learners and embark on a learning adventure";
   static const onboardingSubtitle4 =
       "Connect with like-minded individuals Join us to learn, grow, and thrive together!";
+
+  //auth
+  static const signIn = "Sign In";
+  static const signUp = "Sign Up";
+  static const email = "Email";
+  static const password = "Password";
+  static const signInWithAccount = "Please sign in with your account";
+  static const createAccount =
+      "Create an acount to begin your learning journey";
+  static const forgotPassword = "Forgot Password?";
+  static const dontHaveAccount = "Don't have an account?";
+  static const haveAccount = "Already have an account?";
+  static const signupHere = "Sign up here";
+  static const signinHere = "Sign in here";
 }
