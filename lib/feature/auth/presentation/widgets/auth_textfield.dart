@@ -72,6 +72,11 @@ class _AuthTextfieldState extends State<AuthTextfield> {
                 borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(color: ColorPalette.primaryColor),
               ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(color: Colors.red),
+              ),
+              errorStyle: const TextStyle(height: 0, fontSize: 0),
             ),
             validator: widget.validator,
           ),

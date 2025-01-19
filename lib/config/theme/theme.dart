@@ -10,7 +10,7 @@ class ColorPalette {
 ThemeData getAppTheme(BuildContext context) {
   return ThemeData(
       useMaterial3: true,
-      fontFamily: "Geologica",
+      fontFamily: "PlusJakartaSans",
       scaffoldBackgroundColor: Colors.white,
       appBarTheme: const AppBarTheme(
         iconTheme: IconThemeData(color: Colors.white),
