@@ -16,7 +16,7 @@ class OnBoardingpage extends StatefulWidget {
 }
 
 class _OnBoardingpageState extends State<OnBoardingpage> {
-  static const onboardingData = [
+  static const _onboardingData = [
     {
       'title': Strings.onboardingTitle1,
       'subtitle': Strings.onboardingSubtitle1,
@@ -83,7 +83,7 @@ class _OnBoardingpageState extends State<OnBoardingpage> {
                           ? context.read<OnboardingCubit>().back()
                           : null;
                     } else if (details.primaryVelocity! < 0) {
-                      if (state == onboardingData.length - 1) {
+                      if (state == _onboardingData.length - 1) {
                         await SharedUtility.setIsOnboarding();
                         if (!context.mounted) return;
                         context.go("/signin");
@@ -100,13 +100,13 @@ class _OnBoardingpageState extends State<OnBoardingpage> {
                     ),
                     SizedBox(
                       height: 0.4.h(context),
-                      child: Image.asset(onboardingData[state]['image']!),
+                      child: Image.asset(_onboardingData[state]['image']!),
                     ),
                     SizedBox(
                       height: 0.02.h(context),
                     ),
                     Text(
-                      onboardingData[state]['title']!,
+                      _onboardingData[state]['title']!,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
@@ -119,7 +119,7 @@ class _OnBoardingpageState extends State<OnBoardingpage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Text(
-                        onboardingData[state]['subtitle']!,
+                        _onboardingData[state]['subtitle']!,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 0.012.toRes(context),
@@ -132,14 +132,14 @@ class _OnBoardingpageState extends State<OnBoardingpage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
-                        onboardingData.length,
+                        _onboardingData.length,
                         (index) => Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CircleAvatar(
                             radius: 5,
                             backgroundColor: index == state
                                 ? ColorPalette.primaryColor
-                                : Colors.grey.withOpacity(0.5),
+                                : Colors.grey.shade500,
                           ),
                         ),
                       ),
@@ -156,7 +156,7 @@ class _OnBoardingpageState extends State<OnBoardingpage> {
                           fixedSize: Size(0.6.w(context), 0.06.h(context)),
                         ),
                         onPressed: () async {
-                          if (state == onboardingData.length - 1) {
+                          if (state == _onboardingData.length - 1) {
                             await SharedUtility.setIsOnboarding();
                             if (!context.mounted) return;
                             context.go("/signin");
