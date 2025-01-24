@@ -11,6 +11,7 @@ import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:lms/injection_container.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -20,6 +21,10 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   NotificationServices().initializeNotification();
   PermissionHandler.init();
+  await Supabase.initialize(
+    url: dotenv.get('SUPABASE_URL'),
+    anonKey: dotenv.get('SUPABASE_KEY'),
+  );
   await initializeDependencies();
   runApp(
     const MyApp(),

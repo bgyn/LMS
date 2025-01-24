@@ -64,6 +64,7 @@ final routeConfig = GoRouter(
     // If the user is logged in and trying to go to the login page,
     //or onboarded and trying to go to the onboarding page
     else if ((isLoggedIn && isGoingToLogin) ||
+        (isLoggedIn && isGoingToSignUp) ||
         (isOnboarded && isGoingToOnboarding) ||
         (isGoingToInit && !isLoggingIn)) {
       return homeLocation;
