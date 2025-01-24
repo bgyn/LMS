@@ -16,7 +16,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final Singout _singout;
   final Signup _signup;
   final Getcurrentuser _getcurrentuser;
-  final supabase.Supabase _supabase = supabase.Supabase.instance;
   StreamSubscription<supabase.User?>? _userSubscription;
 
   AuthBloc(

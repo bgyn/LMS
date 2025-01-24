@@ -7,6 +7,10 @@ import 'package:lms/feature/auth/domain/usecase/signin.dart';
 import 'package:lms/feature/auth/domain/usecase/signup.dart';
 import 'package:lms/feature/auth/domain/usecase/singout.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
+import 'package:lms/feature/profile/data/datasource/remote/supabase_profile_service.dart';
+import 'package:lms/feature/profile/data/repository/profile_repository_impl.dart';
+import 'package:lms/feature/profile/domain/repository/profile_repository.dart';
+import 'package:lms/feature/profile/domain/usecase/get_profile.dart';
 
 final sl = GetIt.instance;
 
@@ -24,4 +28,9 @@ Future<void> initializeDependencies() async {
         singout: sl(),
         signup: sl(),
       ));
+
+  //profile
+  sl.registerSingleton<SupabaseProfileService>(SupabaseProfileService());
+  sl.registerSingleton<ProfileRepository>(ProfileRepositoryImpl(sl()));
+  sl.registerLazySingleton<GetProfile>(() => GetProfile(sl()));
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:lms/config/route/route_path.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_event.dart';
+import 'package:lms/feature/profile/presentation/bloc/profile_bloc.dart';
+import 'package:lms/feature/profile/presentation/bloc/profile_event.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -26,7 +26,7 @@ class Dashboard extends StatelessWidget {
               child: const Text('Logout')),
           ElevatedButton(
               onPressed: () {
-                context.push(RoutePath.profile);
+                context.read<ProfileBloc>().add(ProfileGet());
               },
               child: const Text('Profile'))
         ],
