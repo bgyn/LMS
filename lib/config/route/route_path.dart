@@ -5,4 +5,7 @@ class RoutePath {
   static const onboarding = "/onboarding";
   static const dashboard = "/dashboard";
   static const profile = "/profile";
+  static const home = "/";
+  static const inbox = "/inbox";
+  static const myCourse = "/mycourse";
 }

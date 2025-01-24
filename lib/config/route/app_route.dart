@@ -10,9 +10,12 @@ import 'package:lms/feature/auth/presentation/bloc/auth_state.dart';
 import 'package:lms/feature/auth/presentation/pages/sign_in_page.dart';
 import 'package:lms/feature/auth/presentation/pages/sign_up_page.dart';
 import 'package:lms/feature/dashboard/dashboard.dart';
+import 'package:lms/feature/inbox/presentation/pages/inbox_page.dart';
+import 'package:lms/feature/my_course/presentation/pages/my_course_page.dart';
 import 'package:lms/feature/onboarding/presentation/onboarding_page.dart';
-import 'package:lms/feature/profile/profile_page.dart';
+import 'package:lms/feature/profile/presentation/pages/profile_page.dart';
 import 'package:lms/feature/splash/presentation/splash_page.dart';
+import 'package:lms/home/presentation/pages/home_pages.dart';
 import 'package:lms/injection_container.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -32,7 +35,7 @@ final routeConfig = GoRouter(
     final isLoggedIn = authState is Authenticated;
 
     const loginLocation = RoutePath.signIn;
-    const homeLocation = RoutePath.dashboard;
+    const homeLocation = RoutePath.home;
     const onboardingLocation = RoutePath.onboarding;
     const splashLocation = RoutePath.splash;
     const signUpLocation = RoutePath.signUp;
@@ -91,13 +94,31 @@ final routeConfig = GoRouter(
       path: RoutePath.onboarding,
       builder: (context, state) => const OnBoardingpage(),
     ),
-    GoRoute(
-      path: RoutePath.dashboard,
-      builder: (context, state) => const Dashboard(),
-    ),
-    GoRoute(
-        path: RoutePath.profile,
-        builder: (context, state) => const ProfilePage()),
+
+    //shell route
+    ShellRoute(
+        navigatorKey: _shellNavigatorKey,
+        builder: (context, state, child) => Dashboard(
+              body: child,
+            ),
+        routes: [
+          GoRoute(
+            path: RoutePath.home,
+            builder: (context, state) => const HomePages(),
+          ),
+          GoRoute(
+            path: RoutePath.myCourse,
+            builder: (context, state) => const MyCoursePage(),
+          ),
+          GoRoute(
+            path: RoutePath.inbox,
+            builder: (context, state) => const InboxPage(),
+          ),
+          GoRoute(
+            path: RoutePath.profile,
+            builder: (context, state) => const ProfilePage(),
+          ),
+        ])
   ],
 );
 
