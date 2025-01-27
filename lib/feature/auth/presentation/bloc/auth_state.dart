@@ -1,7 +1,7 @@
-import 'package:lms/feature/auth/domain/model/user_model.dart';
+import 'package:lms/feature/auth/domain/model/auth_response_model.dart';
 
 sealed class AuthState {
-  final UserModel? user;
+  final AuthResponseModel? user;
   final String? errorMessage;
   AuthState({this.user, this.errorMessage});
 }
@@ -13,7 +13,7 @@ class AuthLoading extends AuthState {}
 class AuthLogginIn extends AuthState {}
 
 class Authenticated extends AuthState {
-  Authenticated(UserModel user) : super(user: user);
+  Authenticated(AuthResponseModel user) : super(user: user);
 }
 
 class AuthSignedOut extends AuthState {}

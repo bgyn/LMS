@@ -1,14 +1,12 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:lms/core/faliure/faliure.dart';
-import 'package:lms/feature/auth/domain/model/user_model.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:lms/feature/auth/domain/model/auth_response_model.dart';
 
 abstract class AuthRepository {
-  Future<Either<Failure, UserModel>> signInWithEmailAndPassword(
+  Future<Either<Failure, AuthResponseModel>> signInWithEmailAndPassword(
       String email, String password);
-  Future<Either<Failure, UserModel>> signUpWithEmailAndPassword(
+  Future<Either<Failure, AuthResponseModel>> signUpWithEmailAndPassword(
       String email, String password, String fullName);
   Future<Either<Failure, void>> signOut();
 
- Stream<User?> getCurrentUser();
 }
