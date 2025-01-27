@@ -25,7 +25,6 @@ class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<Either<Failure, void>> signOut() async {
     try {
-      await _authApiService.logout();
       _localAuthApiService.deleteToken();
       return right(null);
     } on Exception catch (e) {
@@ -54,7 +53,6 @@ class AuthRepositoryImpl extends AuthRepository {
       }
       return left(const ServerFailure("User not logged in"));
     } on Exception catch (e) {
-      print(e);
       return left(ServerFailure(e.toString()));
     }
   }
