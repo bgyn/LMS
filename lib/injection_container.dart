@@ -8,6 +8,12 @@ import 'package:lms/feature/auth/domain/usecase/signin.dart';
 import 'package:lms/feature/auth/domain/usecase/signup.dart';
 import 'package:lms/feature/auth/domain/usecase/singout.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
+import 'package:lms/feature/password_reset/data/repository/password_reset_repository_impl.dart';
+import 'package:lms/feature/password_reset/data/source/remote/password_reset_api_service.dart';
+import 'package:lms/feature/password_reset/domain/repository/password_reset_repository.dart';
+import 'package:lms/feature/password_reset/domain/usecase/reset_password.dart';
+import 'package:lms/feature/password_reset/domain/usecase/send_password_reset.dart';
+import 'package:lms/feature/password_reset/domain/usecase/verify_otp.dart';
 import 'package:lms/feature/profile/data/datasource/remote/supabase_profile_service.dart';
 import 'package:lms/feature/profile/data/repository/profile_repository_impl.dart';
 import 'package:lms/feature/profile/domain/repository/profile_repository.dart';
@@ -30,6 +36,14 @@ Future<void> initializeDependencies() async {
         signup: sl(),
         isUserLoggedIn: sl(),
       ));
+
+  //password reset
+  sl.registerSingleton<PasswordResetApiService>(PasswordResetApiService());
+  sl.registerSingleton<PasswordResetRepository>(
+      PasswordResetRepositoryImpl(sl()));
+  sl.registerSingleton<ResetPassword>(ResetPassword(sl()));
+  sl.registerSingleton<SendPasswordReset>(SendPasswordReset(sl()));
+  sl.registerSingleton<VerifyOtp>(VerifyOtp(sl()));
 
   //profile
   sl.registerSingleton<SupabaseProfileService>(SupabaseProfileService());

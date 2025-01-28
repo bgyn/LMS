@@ -47,6 +47,4 @@ class AuthApiService {
       throw Exception("Unexpected error: $e");
     }
   }
-
-  Future<void> logout() async {}
 }

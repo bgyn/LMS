@@ -7,8 +7,11 @@ import 'package:lms/config/route/route_path.dart';
 import 'package:lms/core/utils/shared_utility.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_state.dart';
+import 'package:lms/feature/password_reset/presentation/pages/forgot_password_page.dart';
+import 'package:lms/feature/password_reset/presentation/pages/password_reset_page.dart';
 import 'package:lms/feature/auth/presentation/pages/sign_in_page.dart';
 import 'package:lms/feature/auth/presentation/pages/sign_up_page.dart';
+import 'package:lms/feature/password_reset/presentation/pages/verify_otp_page.dart';
 import 'package:lms/feature/dashboard/dashboard.dart';
 import 'package:lms/feature/inbox/presentation/pages/inbox_page.dart';
 import 'package:lms/feature/my_course/presentation/pages/my_course_page.dart';
@@ -39,11 +42,26 @@ final routeConfig = GoRouter(
     const onboardingLocation = RoutePath.onboarding;
     const splashLocation = RoutePath.splash;
     const signUpLocation = RoutePath.signUp;
+    const forgotPasswordLocation = RoutePath.forgotPassword;
+    const verifyOtpLocation = RoutePath.verifyOtp;
+    const passwordResetLocation = RoutePath.resetPassword;
 
+    final isGoingToForgotPassword =
+        state.matchedLocation == forgotPasswordLocation;
+    final isGoingToPasswordReset =
+        state.matchedLocation == passwordResetLocation;
+    final isGoingToVerifyOtp = state.matchedLocation == verifyOtpLocation;
     final isGoingToLogin = state.matchedLocation == loginLocation;
     final isGoingToOnboarding = state.matchedLocation == onboardingLocation;
     final isGoingToInit = state.matchedLocation == splashLocation;
     final isGoingToSignUp = state.matchedLocation == signUpLocation;
+
+    //if the user is going to the forgot password page
+    if (isGoingToForgotPassword ||
+        isGoingToPasswordReset ||
+        isGoingToVerifyOtp) {
+      return null;
+    }
 
     //If the user is logging in
     //and not going to the initial (splash) screen
@@ -72,6 +90,7 @@ final routeConfig = GoRouter(
         (isGoingToInit && !isLoggingIn)) {
       return homeLocation;
     }
+
     //default case
     else {
       return null;
@@ -91,8 +110,25 @@ final routeConfig = GoRouter(
       builder: (context, state) => const SignInPage(),
     ),
     GoRoute(
+      path: RoutePath.forgotPassword,
+      builder: (context, state) => const ForgotPasswordPage(),
+    ),
+    GoRoute(
       path: RoutePath.onboarding,
       builder: (context, state) => const OnBoardingpage(),
+    ),
+    GoRoute(
+        path: RoutePath.verifyOtp,
+        builder: (context, state) {
+          final email = state.extra as String;
+          return VerifyOtpPage(email: email,);
+        }),
+    GoRoute(
+      path: RoutePath.resetPassword,
+      builder: (context, state) {
+        final email = state.extra as String;
+        return  PasswordResetPage(email : email);
+      } ,
     ),
 
     //shell route

@@ -10,4 +10,16 @@ class UrlConstant {
   static String register() {
     return '$baseUrl/auth/register';
   }
+
+  static String verifyOtp() {
+    return '$baseUrl/auth/verify-otp';
+  }
+
+  static String passwordReset() {
+    return '$baseUrl/auth/reset-password';
+  }
+
+  static String passwordResetRequest() {
+    return '$baseUrl/auth/forgot-password';
+  }
 }

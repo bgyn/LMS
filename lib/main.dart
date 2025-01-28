@@ -9,6 +9,7 @@ import 'package:lms/core/utils/shared_utility.dart';
 import 'package:lms/core/utils/show_snackbar.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_event.dart';
+import 'package:lms/feature/password_reset/presentation/bloc/password_reset_bloc.dart';
 import 'package:lms/feature/profile/presentation/bloc/profile_bloc.dart';
 import 'package:lms/injection_container.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -39,8 +40,16 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => sl<AuthBloc>()..add(AuthIsUserLoggedIn())),
-          BlocProvider(create: (_) => ProfileBloc(sl()))
+          BlocProvider(
+              create: (_) => sl<AuthBloc>()..add(AuthIsUserLoggedIn())),
+          BlocProvider(create: (_) => ProfileBloc(sl())),
+          BlocProvider(
+            create: (_) => PasswordResetBloc(
+              resetPassword: sl(),
+              verifyOtp: sl(),
+              sendPasswordReset: sl(),
+            ),
+          )
         ],
         child: MaterialApp.router(
           scaffoldMessengerKey: scaffoldMessengerKey,

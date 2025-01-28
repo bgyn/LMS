@@ -5,6 +5,8 @@ sealed class AuthEvent {}
 
 class AuthIsUserLoggedIn extends AuthEvent {}
 
+class AuthIntialEvent extends AuthEvent {}
+
 class AuthSignIn extends AuthEvent {
   final SiginParams params;
   AuthSignIn(this.params);

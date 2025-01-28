@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lms/config/route/route_path.dart';
 import 'package:lms/config/theme/theme.dart';
 import 'package:lms/core/constants/strings.dart';
 import 'package:lms/core/extension/estension.dart';
@@ -93,17 +94,23 @@ class _SignInPageState extends State<SignInPage> {
                     },
                   ),
                   SizedBox(
-                    height: 0.01.h(context),
+                    height: 0.02.h(context),
                   ),
                   Align(
                     alignment: Alignment.centerRight,
-                    child: Text(
-                      Strings.forgotPassword,
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                            fontSize: 0.012.toRes(context),
-                            color: Colors.black54,
-                          ),
-                      textAlign: TextAlign.end,
+                    child: GestureDetector(
+                      onTap: () => {
+                        GoRouter.of(context).push(RoutePath.forgotPassword),
+                      },
+                      child: Text(
+                        "${Strings.forgotPassword}?",
+                        style:
+                            Theme.of(context).textTheme.labelMedium?.copyWith(
+                                  fontSize: 0.012.toRes(context),
+                                  color: Colors.black54,
+                                ),
+                        textAlign: TextAlign.end,
+                      ),
                     ),
                   ),
                   SizedBox(

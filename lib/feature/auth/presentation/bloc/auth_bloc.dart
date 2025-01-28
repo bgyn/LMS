@@ -27,6 +27,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthSignUp>(_onAuthSignedUp);
     on<AuthSignOut>(_onAuthSignedOut);
     on<AuthIsUserLoggedIn>(_onAuthIsUserLoggedIn);
+    on<AuthIntialEvent>((event, emit) => emit(AuthInitial()));
   }
 
   void _onAuthSignedIn(AuthSignIn event, Emitter<AuthState> emit) async {
