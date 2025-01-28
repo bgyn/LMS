@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +17,8 @@ import 'package:lms/feature/dashboard/dashboard.dart';
 import 'package:lms/feature/inbox/presentation/pages/inbox_page.dart';
 import 'package:lms/feature/my_course/presentation/pages/my_course_page.dart';
 import 'package:lms/feature/onboarding/presentation/onboarding_page.dart';
+import 'package:lms/feature/profile/domain/model/profile_model.dart';
+import 'package:lms/feature/profile/presentation/pages/edit_profile_page.dart';
 import 'package:lms/feature/profile/presentation/pages/profile_page.dart';
 import 'package:lms/feature/splash/presentation/splash_page.dart';
 import 'package:lms/home/presentation/pages/home_pages.dart';
@@ -121,14 +124,16 @@ final routeConfig = GoRouter(
         path: RoutePath.verifyOtp,
         builder: (context, state) {
           final email = state.extra as String;
-          return VerifyOtpPage(email: email,);
+          return VerifyOtpPage(
+            email: email,
+          );
         }),
     GoRoute(
       path: RoutePath.resetPassword,
       builder: (context, state) {
         final email = state.extra as String;
-        return  PasswordResetPage(email : email);
-      } ,
+        return PasswordResetPage(email: email);
+      },
     ),
 
     //shell route
@@ -154,6 +159,13 @@ final routeConfig = GoRouter(
             path: RoutePath.profile,
             builder: (context, state) => const ProfilePage(),
           ),
+          GoRoute(
+              path: RoutePath.editProfile,
+              builder: (context, state) {
+                final res = state.extra as String;
+                final profile = ProfileModel.fromMap(jsonDecode(res));
+                return  EditProfilePage(profile: profile,);
+              }),
         ])
   ],
 );

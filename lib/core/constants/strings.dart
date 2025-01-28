@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 @immutable
 class Strings {
@@ -20,7 +21,6 @@ class Strings {
   static const onboardingSubtitle4 =
       "Connect with like-minded individuals Join us to learn, grow, and thrive together!";
 
-  //auth
   static const signIn = "Sign In";
   static const signUp = "Sign Up";
   static const fullName = "Full Name";
@@ -41,4 +41,6 @@ class Strings {
   static const send = "send";
   static const reset = "Reset";
   static const verify = "Verify";
+  static const editProfile = "Edit Profile";
+  static const save = "Save";
 }

@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
         providers: [
           BlocProvider(
               create: (_) => sl<AuthBloc>()..add(AuthIsUserLoggedIn())),
-          BlocProvider(create: (_) => ProfileBloc(sl())),
+          BlocProvider(create: (_) => ProfileBloc(sl(),sl())),
           BlocProvider(
             create: (_) => PasswordResetBloc(
               resetPassword: sl(),

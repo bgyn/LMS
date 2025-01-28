@@ -5,12 +5,11 @@ import 'package:lms/core/usecase/usecase.dart';
 import 'package:lms/feature/profile/domain/model/profile_model.dart';
 import 'package:lms/feature/profile/domain/repository/profile_repository.dart';
 
-class GetProfile extends UseCase<ProfileModel,UpdateProfileParams>{
+class UpadateProfile extends UseCase<ProfileModel, UpdateProfileParams> {
   final ProfileRepository _repository;
-  GetProfile(this._repository);
+  UpadateProfile(this._repository);
   @override
-  Future<Either<Failure, ProfileModel>> call(void params) {
-    return _repository.getProfile();
+  Future<Either<Failure, ProfileModel>> call(UpdateProfileParams params) async {
+    return await _repository.updateProfile(params);
   }
-  
 }

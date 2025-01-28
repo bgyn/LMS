@@ -14,10 +14,11 @@ import 'package:lms/feature/password_reset/domain/repository/password_reset_repo
 import 'package:lms/feature/password_reset/domain/usecase/reset_password.dart';
 import 'package:lms/feature/password_reset/domain/usecase/send_password_reset.dart';
 import 'package:lms/feature/password_reset/domain/usecase/verify_otp.dart';
-import 'package:lms/feature/profile/data/datasource/remote/supabase_profile_service.dart';
+import 'package:lms/feature/profile/data/datasource/remote/profile_api_service.dart';
 import 'package:lms/feature/profile/data/repository/profile_repository_impl.dart';
 import 'package:lms/feature/profile/domain/repository/profile_repository.dart';
 import 'package:lms/feature/profile/domain/usecase/get_profile.dart';
+import 'package:lms/feature/profile/domain/usecase/upadate_profile.dart';
 
 final sl = GetIt.instance;
 
@@ -46,7 +47,8 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<VerifyOtp>(VerifyOtp(sl()));
 
   //profile
-  sl.registerSingleton<SupabaseProfileService>(SupabaseProfileService());
+  sl.registerSingleton<ProfileApiService>(ProfileApiService());
   sl.registerSingleton<ProfileRepository>(ProfileRepositoryImpl(sl()));
+  sl.registerSingleton<UpadateProfile>(UpadateProfile(sl()));
   sl.registerLazySingleton<GetProfile>(() => GetProfile(sl()));
 }

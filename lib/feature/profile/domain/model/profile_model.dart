@@ -3,11 +3,15 @@ class ProfileModel {
   final String? name;
   final String email;
   final String? profileImage;
+  final String? bio;
+  final String? role;
   ProfileModel({
     required this.id,
     this.name,
     required this.email,
     this.profileImage,
+    this.bio,
+    this.role,
   });
 
   ProfileModel copyWith({
@@ -15,31 +19,39 @@ class ProfileModel {
     String? name,
     String? email,
     String? profileImage,
+    String? bio,
+    String? role,
   }) {
     return ProfileModel(
       id: id ?? this.id,
       name: name ?? this.name,
       email: email ?? this.email,
       profileImage: profileImage ?? this.profileImage,
+      bio: bio ?? this.bio,
+      role: role ?? this.role,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
+      '_id': id,
       'name': name,
       'email': email,
-      'profile_image': profileImage,
+      'profileImage': profileImage,
+      'bio': bio,
+      "role": role,
     };
   }
 
   factory ProfileModel.fromMap(Map<String, dynamic> map) {
     return ProfileModel(
-      id: map['id'] as String,
+      id: map['_id'] as String,
       name: map['name'] != null ? map['name'] as String : null,
       email: map['email'] as String,
       profileImage:
-          map['profile_image'] != null ? map['profile_image'] as String : null,
+          map['profileImage'] != null ? map['profileImage'] as String : null,
+      bio: map['bio'] != null ? map['bio'] as String : null,
+      role: map['role'] != null ? map['role'] as String : null,
     );
   }
   @override
@@ -49,11 +61,18 @@ class ProfileModel {
     return other.id == id &&
         other.name == name &&
         other.email == email &&
+        other.bio == bio &&
+        other.role == role &&
         other.profileImage == profileImage;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^ name.hashCode ^ email.hashCode ^ profileImage.hashCode;
+    return id.hashCode ^
+        name.hashCode ^
+        email.hashCode ^
+        profileImage.hashCode ^
+        role.hashCode ^
+        bio.hashCode;
   }
 }
