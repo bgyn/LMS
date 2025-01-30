@@ -9,6 +9,8 @@ import 'package:lms/core/constants/strings.dart';
 import 'package:lms/core/constants/url_constant.dart';
 import 'package:lms/core/extension/estension.dart';
 import 'package:lms/core/widgets/button.dart';
+import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
+import 'package:lms/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:lms/feature/profile/presentation/bloc/profile_bloc.dart';
 import 'package:lms/feature/profile/presentation/bloc/profile_state.dart';
 
@@ -97,6 +99,12 @@ class ProfilePage extends StatelessWidget {
                       onTap: () {
                         final profile = jsonEncode(state.profile!.toMap());
                         context.push(RoutePath.editProfile, extra: profile);
+                      }),
+                  Button(
+                      width: 0.5.w(context),
+                      title: "Logout",
+                      onTap: () {
+                        context.read<AuthBloc>().add(AuthSignOut());
                       })
                 ],
               ),
