@@ -47,7 +47,7 @@ void showVideoDialog(String url, BuildContext context) {
           borderRadius: BorderRadius.circular(12),
         ),
         child: SizedBox(
-          width: MediaQuery.of(context).size.width * .9,
+          width: 0.9.w(context),
           height: 0.4.h(context),
           child: VideoPlayerScreen(url: url),
         ),
