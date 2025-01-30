@@ -9,6 +9,7 @@ import 'package:lms/core/utils/shared_utility.dart';
 import 'package:lms/core/utils/show_snackbar.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_event.dart';
+import 'package:lms/feature/course/presentation/bloc/course_bloc.dart';
 import 'package:lms/feature/password_reset/presentation/bloc/password_reset_bloc.dart';
 import 'package:lms/feature/profile/presentation/bloc/profile_bloc.dart';
 import 'package:lms/injection_container.dart';
@@ -42,14 +43,15 @@ class _MyAppState extends State<MyApp> {
         providers: [
           BlocProvider(
               create: (_) => sl<AuthBloc>()..add(AuthIsUserLoggedIn())),
-          BlocProvider(create: (_) => ProfileBloc(sl(),sl())),
+          BlocProvider(create: (_) => ProfileBloc(sl(), sl())),
           BlocProvider(
             create: (_) => PasswordResetBloc(
               resetPassword: sl(),
               verifyOtp: sl(),
               sendPasswordReset: sl(),
             ),
-          )
+          ),
+          BlocProvider(create: (_) => CourseBloc(sl()))
         ],
         child: MaterialApp.router(
           scaffoldMessengerKey: scaffoldMessengerKey,

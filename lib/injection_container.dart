@@ -8,6 +8,14 @@ import 'package:lms/feature/auth/domain/usecase/signin.dart';
 import 'package:lms/feature/auth/domain/usecase/signup.dart';
 import 'package:lms/feature/auth/domain/usecase/singout.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
+import 'package:lms/feature/course/data/data/remote/course_api_service.dart';
+import 'package:lms/feature/course/data/repository/course_repository_impl.dart';
+import 'package:lms/feature/course/domain/repository/course_repository.dart';
+import 'package:lms/feature/course/domain/usecase/get_course.dart';
+import 'package:lms/feature/course_detail/data/repository/course_detail_repository_impl.dart';
+import 'package:lms/feature/course_detail/data/source/remote/course_detail_api_service.dart';
+import 'package:lms/feature/course_detail/domain/respository/course_detail_repository.dart';
+import 'package:lms/feature/course_detail/domain/usecase/get_course_details_by_id.dart';
 import 'package:lms/feature/password_reset/data/repository/password_reset_repository_impl.dart';
 import 'package:lms/feature/password_reset/data/source/remote/password_reset_api_service.dart';
 import 'package:lms/feature/password_reset/domain/repository/password_reset_repository.dart';
@@ -51,4 +59,15 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<ProfileRepository>(ProfileRepositoryImpl(sl()));
   sl.registerSingleton<UpadateProfile>(UpadateProfile(sl()));
   sl.registerLazySingleton<GetProfile>(() => GetProfile(sl()));
+
+  //course
+  sl.registerSingleton<CourseApiService>(CourseApiService());
+  sl.registerSingleton<CourseRepository>(CourseRepositoryImpl(sl()));
+  sl.registerSingleton<GetCourse>(GetCourse(sl()));
+
+  //course detail
+  sl.registerSingleton<CourseDetailApiService>(CourseDetailApiService());
+  sl.registerSingleton<CourseDetailRepository>(
+      CourseDetailRepositoryImpl(sl()));
+  sl.registerSingleton<GetCourseDetailsById>(GetCourseDetailsById(sl()));
 }

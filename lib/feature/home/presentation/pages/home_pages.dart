@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/config/theme/theme.dart';
 import 'package:lms/core/extension/estension.dart';
-import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
-import 'package:lms/feature/auth/presentation/bloc/auth_event.dart';
+import 'package:lms/feature/course/presentation/bloc/course_bloc.dart';
+import 'package:lms/feature/course/presentation/bloc/course_event.dart';
+import 'package:lms/feature/course/presentation/widgets/course_grid.dart';
 import 'package:lms/feature/profile/presentation/bloc/profile_bloc.dart';
 import 'package:lms/feature/profile/presentation/bloc/profile_event.dart';
 import 'package:lms/feature/profile/presentation/bloc/profile_state.dart';
+import 'package:lms/feature/home/presentation/widgets/custom_search_bar.dart';
 
 class HomePages extends StatefulWidget {
   const HomePages({super.key});
@@ -19,6 +21,7 @@ class _HomePagesState extends State<HomePages> {
   @override
   void initState() {
     context.read<ProfileBloc>().add(ProfileGet());
+    context.read<CourseBloc>().add(FetchCourses());
     super.initState();
   }
 
@@ -74,17 +77,17 @@ class _HomePagesState extends State<HomePages> {
               )),
         ],
       ),
-      body: Column(
-        children: [
-          const Center(
-            child: Text('Home Page'),
-          ),
-          ElevatedButton(
-              onPressed: () {
-                context.read<AuthBloc>().add(AuthSignOut());
-              },
-              child: const Text('Logout'))
-        ],
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 0.03.w(context)),
+        child: Column(
+          children: [
+            const CustomSearchBar(),
+            SizedBox(
+              height: 0.03.h(context),
+            ),
+            const Expanded(child: CourseGrid()),
+          ],
+        ),
       ),
     );
   }

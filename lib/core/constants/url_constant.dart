@@ -27,4 +27,16 @@ class UrlConstant {
   static String profile() {
     return '$baseUrl/profile';
   }
+
+  static String allCourse() {
+    return '$baseUrl/course/all';
+  }
+
+  static String courseById(String id) {
+    return '$baseUrl/course/$id';
+  }
+
+  static String video(String path) {
+    return '$baseUrl/video?path=$path';
+  }
 }

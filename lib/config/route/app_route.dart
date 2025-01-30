@@ -8,6 +8,7 @@ import 'package:lms/config/route/route_path.dart';
 import 'package:lms/core/utils/shared_utility.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_state.dart';
+import 'package:lms/feature/course_detail/presentation/pages/course_details.dart';
 import 'package:lms/feature/password_reset/presentation/pages/forgot_password_page.dart';
 import 'package:lms/feature/password_reset/presentation/pages/password_reset_page.dart';
 import 'package:lms/feature/auth/presentation/pages/sign_in_page.dart';
@@ -21,7 +22,7 @@ import 'package:lms/feature/profile/domain/model/profile_model.dart';
 import 'package:lms/feature/profile/presentation/pages/edit_profile_page.dart';
 import 'package:lms/feature/profile/presentation/pages/profile_page.dart';
 import 'package:lms/feature/splash/presentation/splash_page.dart';
-import 'package:lms/home/presentation/pages/home_pages.dart';
+import 'package:lms/feature/home/presentation/pages/home_pages.dart';
 import 'package:lms/injection_container.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -135,6 +136,14 @@ final routeConfig = GoRouter(
         return PasswordResetPage(email: email);
       },
     ),
+      GoRoute(
+              path: RoutePath.courseDetail,
+              builder: (context, state) {
+                final id = state.extra as String;
+                return CourseDetails(
+                  id: id,
+                );
+              }),
 
     //shell route
     ShellRoute(
@@ -159,12 +168,15 @@ final routeConfig = GoRouter(
             path: RoutePath.profile,
             builder: (context, state) => const ProfilePage(),
           ),
+        
           GoRoute(
               path: RoutePath.editProfile,
               builder: (context, state) {
                 final res = state.extra as String;
                 final profile = ProfileModel.fromMap(jsonDecode(res));
-                return  EditProfilePage(profile: profile,);
+                return EditProfilePage(
+                  profile: profile,
+                );
               }),
         ])
   ],

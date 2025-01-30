@@ -12,4 +12,5 @@ class RoutePath {
   static const home = "/";
   static const inbox = "/inbox";
   static const myCourse = "/mycourse";
+  static const courseDetail = "/coursedetail";
 }
