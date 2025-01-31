@@ -39,4 +39,8 @@ class UrlConstant {
   static String video(String path) {
     return '$baseUrl/video?path=$path';
   }
+
+  static String createPaymentIntent() {
+    return '$baseUrl/payment/create-payment-intent';
+  }
 }

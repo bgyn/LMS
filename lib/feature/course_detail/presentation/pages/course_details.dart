@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lms/config/route/route_path.dart';
 import 'package:lms/core/constants/url_constant.dart';
 import 'package:lms/core/extension/estension.dart';
+import 'package:lms/core/widgets/button.dart';
 import 'package:lms/feature/course_detail/presentation/bloc/course_detail_bloc.dart';
 import 'package:lms/feature/course_detail/presentation/bloc/course_detail_event.dart';
 import 'package:lms/feature/course_detail/presentation/bloc/course_detail_state.dart';
@@ -76,6 +78,13 @@ class CourseDetails extends StatelessWidget {
             );
           }),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: Button(
+            width: 0.9.w(context),
+            title: "Enroll",
+            onTap: () {
+              context.push(RoutePath.paymentIntent);
+            }),
       ),
     );
   }

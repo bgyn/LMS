@@ -22,6 +22,10 @@ import 'package:lms/feature/password_reset/domain/repository/password_reset_repo
 import 'package:lms/feature/password_reset/domain/usecase/reset_password.dart';
 import 'package:lms/feature/password_reset/domain/usecase/send_password_reset.dart';
 import 'package:lms/feature/password_reset/domain/usecase/verify_otp.dart';
+import 'package:lms/feature/payment/data/repository/payment_repository_impl.dart';
+import 'package:lms/feature/payment/data/source/remote/payment_api_service.dart';
+import 'package:lms/feature/payment/domain/repository/payment_repository.dart';
+import 'package:lms/feature/payment/domain/usecase/create_payment_intent.dart';
 import 'package:lms/feature/profile/data/datasource/remote/profile_api_service.dart';
 import 'package:lms/feature/profile/data/repository/profile_repository_impl.dart';
 import 'package:lms/feature/profile/domain/repository/profile_repository.dart';
@@ -70,4 +74,9 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<CourseDetailRepository>(
       CourseDetailRepositoryImpl(sl()));
   sl.registerSingleton<GetCourseDetailsById>(GetCourseDetailsById(sl()));
+
+  //payment
+  sl.registerSingleton<PaymentApiService>(PaymentApiService());
+  sl.registerSingleton<PaymentRepository>(PaymentRepositoryImpl(sl()));
+  sl.registerSingleton<CreatePaymentIntent>(CreatePaymentIntent(sl()));
 }

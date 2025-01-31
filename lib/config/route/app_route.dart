@@ -18,6 +18,7 @@ import 'package:lms/feature/dashboard/dashboard.dart';
 import 'package:lms/feature/inbox/presentation/pages/inbox_page.dart';
 import 'package:lms/feature/my_course/presentation/pages/my_course_page.dart';
 import 'package:lms/feature/onboarding/presentation/onboarding_page.dart';
+import 'package:lms/feature/payment/presentation/pages/payment_intent.dart';
 import 'package:lms/feature/profile/domain/model/profile_model.dart';
 import 'package:lms/feature/profile/presentation/pages/edit_profile_page.dart';
 import 'package:lms/feature/profile/presentation/pages/profile_page.dart';
@@ -136,14 +137,18 @@ final routeConfig = GoRouter(
         return PasswordResetPage(email: email);
       },
     ),
-      GoRoute(
-              path: RoutePath.courseDetail,
-              builder: (context, state) {
-                final id = state.extra as String;
-                return CourseDetails(
-                  id: id,
-                );
-              }),
+    GoRoute(
+      path: RoutePath.courseDetail,
+      builder: (context, state) {
+        final id = state.extra as String;
+        return CourseDetails(
+          id: id,
+        );
+      },
+    ),
+    GoRoute(
+        path: RoutePath.paymentIntent,
+        builder: (context, state) => const PaymentIntentPage()),
 
     //shell route
     ShellRoute(
@@ -168,7 +173,6 @@ final routeConfig = GoRouter(
             path: RoutePath.profile,
             builder: (context, state) => const ProfilePage(),
           ),
-        
           GoRoute(
               path: RoutePath.editProfile,
               builder: (context, state) {

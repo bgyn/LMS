@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:lms/config/route/app_route.dart';
 import 'package:lms/config/theme/theme.dart';
 import 'package:lms/core/permisson/permission.dart';
@@ -11,6 +12,7 @@ import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:lms/feature/course/presentation/bloc/course_bloc.dart';
 import 'package:lms/feature/password_reset/presentation/bloc/password_reset_bloc.dart';
+import 'package:lms/feature/payment/presentation/bloc/payment_bloc.dart';
 import 'package:lms/feature/profile/presentation/bloc/profile_bloc.dart';
 import 'package:lms/injection_container.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,6 +25,7 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   NotificationServices().initializeNotification();
   PermissionHandler.init();
+  Stripe.publishableKey = dotenv.get("PUBLISHABLE_KEY");
   await initializeDependencies();
   runApp(
     const MyApp(),
@@ -51,7 +54,8 @@ class _MyAppState extends State<MyApp> {
               sendPasswordReset: sl(),
             ),
           ),
-          BlocProvider(create: (_) => CourseBloc(sl()))
+          BlocProvider(create: (_) => CourseBloc(sl())),
+          BlocProvider(create: (_) => PaymentBloc(sl()))
         ],
         child: MaterialApp.router(
           scaffoldMessengerKey: scaffoldMessengerKey,
