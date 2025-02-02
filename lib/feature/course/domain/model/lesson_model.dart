@@ -32,15 +32,15 @@ class LessonModel {
 class SubLesson {
   final String? id;
   final String? title;
-  final String? url;
+  final Video? video;
 
-  SubLesson({this.id, this.title, this.url});
+  SubLesson({this.id, this.title, this.video});
 
   factory SubLesson.fromJson(Map<String, dynamic> json) {
     return SubLesson(
       id: json['_id'],
       title: json['title'],
-      url: json['url'],
+      video: json['video'] != null ? Video.fromJson(json['video']) : null,
     );
   }
 
@@ -48,6 +48,27 @@ class SubLesson {
     return {
       '_id': id,
       'title': title,
+      'video': video?.toJson(),
+    };
+  }
+}
+
+class Video {
+  final int? duration;
+  final String? url;
+
+  Video({this.duration, this.url});
+
+  factory Video.fromJson(Map<String, dynamic> json) {
+    return Video(
+      duration: json['duration'],
+      url: json['url'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'duration': duration,
       'url': url,
     };
   }

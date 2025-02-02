@@ -1,8 +1,8 @@
 class UrlConstant {
   UrlConstant._();
 
-  static const String baseUrl = 'http://192.168.1.214:3000/api/v1';
-  static const String mediaUrl = "http://192.168.1.214:3000";
+  static const String baseUrl = 'https://lms.bgyn.live/api/v1';
+  static const String mediaUrl = 'https://lms.bgyn.live';
 
   static String login() {
     return '$baseUrl/auth/login';

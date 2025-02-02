@@ -3,6 +3,7 @@ import 'package:lms/feature/course/domain/model/lesson_model.dart';
 class CourseModel {
   final String? id;
   final String? title;
+  final int? price;
   final String? description;
   final String? categories;
   final String? thumbnail;
@@ -12,6 +13,7 @@ class CourseModel {
   CourseModel({
     this.id,
     this.title,
+    this.price,
     this.description,
     this.categories,
     this.thumbnail,
@@ -23,6 +25,7 @@ class CourseModel {
     return CourseModel(
       id: json['_id'],
       title: json['title'],
+      price: json['price'],
       description: json['description'],
       categories: json['categories'],
       instructor: json['instructor'] != null
@@ -41,6 +44,7 @@ class CourseModel {
     return {
       '_id': id,
       'title': title,
+      'price': price,
       'description': description,
       'categories': categories,
       'thumbnail': thumbnail,

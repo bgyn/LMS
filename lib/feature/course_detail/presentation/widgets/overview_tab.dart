@@ -6,10 +6,12 @@ class OverviewTab extends StatelessWidget {
   final String title;
   final String description;
   final InstructorModel instructor;
+  final int price;
 
   const OverviewTab(
       {super.key,
       required this.title,
+      required this.price,
       required this.description,
       required this.instructor});
 
@@ -23,15 +25,20 @@ class OverviewTab extends StatelessWidget {
           SizedBox(
             height: 0.01.h(context),
           ),
-          Row(
-            children: [
-              Text(
-                title,
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontSize: 0.018.toRes(context),
-                    ),
-              ),
-            ],
+          Text(
+            "\$ $price",
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  fontSize: 0.018.toRes(context),
+                ),
+          ),
+          SizedBox(
+            height: 0.01.h(context),
+          ),
+          Text(
+            title,
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  fontSize: 0.018.toRes(context),
+                ),
           ),
           Text(
             "By ${instructor.name}",

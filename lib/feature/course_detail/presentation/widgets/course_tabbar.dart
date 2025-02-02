@@ -78,6 +78,7 @@ class _CourseTabbarState extends State<CourseTabbar>
           OverviewTab(
               title: widget.course.title.toString(),
               description: widget.course.description.toString(),
+              price: widget.course.price!,
               instructor: widget.course.instructor!),
           LessonsTab(
             lessons: widget.course.lessons!,

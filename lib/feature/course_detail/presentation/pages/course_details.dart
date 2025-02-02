@@ -70,6 +70,9 @@ class CourseDetails extends StatelessWidget {
                       child: CourseTabbar(
                     course: state.course,
                   )),
+                  SizedBox(
+                    height: 0.1.h(context),
+                  ),
                 ],
               );
             }

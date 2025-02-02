@@ -49,7 +49,7 @@ class SubLessonCard extends StatelessWidget {
                 icon: const Icon(Icons.play_arrow,
                     color: ColorPalette.primaryColor),
                 onPressed: () {
-                  showVideoDialog(subLesson.url!, context);
+                  showVideoDialog(subLesson.video!.url.toString(), context);
                 },
               ),
             );
