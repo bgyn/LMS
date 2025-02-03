@@ -15,12 +15,13 @@ class PaymentApiService {
         "amount": amount,
         "courseId": courseId,
       });
-      print(response.body);
       if (response.statusCode == 200) {
         final clientScret = jsonDecode(response.body)['clientSecret'];
         return clientScret;
-      } else {
+      } else if (response.statusCode == 400) {
         throw Exception(response.body);
+      } else {
+        throw Exception(jsonDecode(response.body)['message']);
       }
     } catch (e) {
       throw Exception(e);
