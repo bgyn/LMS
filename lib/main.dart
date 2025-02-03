@@ -13,6 +13,7 @@ import 'package:lms/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:lms/feature/course/presentation/bloc/course_bloc.dart';
 import 'package:lms/feature/password_reset/presentation/bloc/password_reset_bloc.dart';
 import 'package:lms/feature/payment/presentation/bloc/payment_bloc.dart';
+import 'package:lms/feature/payment/presentation/cubit/stripe_cubit.dart';
 import 'package:lms/feature/profile/presentation/bloc/profile_bloc.dart';
 import 'package:lms/injection_container.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -55,7 +56,8 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
           BlocProvider(create: (_) => CourseBloc(sl())),
-          BlocProvider(create: (_) => PaymentBloc(sl()))
+          BlocProvider(create: (_) => PaymentBloc(sl())),
+          BlocProvider(create: (_) => StripeCubit())
         ],
         child: MaterialApp.router(
           scaffoldMessengerKey: scaffoldMessengerKey,

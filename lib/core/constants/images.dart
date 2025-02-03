@@ -10,4 +10,6 @@ class Images {
 
   //logo
   static const logo = 'assets/images/cybex_logo.png';
+
+  static const transactionCompleted = "assets/images/transaction_completed.png";
 }

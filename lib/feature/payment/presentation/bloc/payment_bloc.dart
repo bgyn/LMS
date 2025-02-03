@@ -7,16 +7,23 @@ import 'package:lms/feature/payment/presentation/bloc/payment_state.dart';
 class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   final CreatePaymentIntent _createPaymentIntent;
   PaymentBloc(this._createPaymentIntent) : super(PaymentInitial()) {
-    on<PaymentIntent>(_onPaymentIntent);
+    on<InitiatePaymentIntent>(_onPaymentIntent);
+    on<PaymentSuccessEvent>(_onPaymentSuccess);
   }
 
-  void _onPaymentIntent(PaymentIntent event, Emitter<PaymentState> emit) async {
+  void _onPaymentIntent(
+      InitiatePaymentIntent event, Emitter<PaymentState> emit) async {
     emit(PaymentLoading());
     final result = await _createPaymentIntent(
         PaymentIntentParams(amount: event.amount, courseId: event.courseId));
     result.fold(
       (failure) => emit(PaymentError(failure.errorMessage)),
-      (response) => emit(PaymentSuccess(response)),
+      (response) => emit(PaymentIntentSuccess(response)),
     );
+  }
+
+  void _onPaymentSuccess(
+      PaymentSuccessEvent event, Emitter<PaymentState> emit) async {
+    emit(PaymentSuccess());
   }
 }

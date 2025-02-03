@@ -1,7 +1,11 @@
 sealed class PaymentEvent {}
 
-class PaymentIntent extends PaymentEvent {
+class InitiatePaymentIntent extends PaymentEvent {
   final String amount;
   final String courseId;
-  PaymentIntent(this.amount, this.courseId);
+  InitiatePaymentIntent(this.amount, this.courseId);
+}
+
+class PaymentSuccessEvent extends PaymentEvent {
+  PaymentSuccessEvent();
 }

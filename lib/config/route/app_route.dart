@@ -148,7 +148,16 @@ final routeConfig = GoRouter(
     ),
     GoRoute(
         path: RoutePath.paymentIntent,
-        builder: (context, state) => const PaymentIntentPage()),
+        builder: (context, state) {
+          final res = state.extra as String;
+          final resDecoded = jsonDecode(res);
+          final amount = resDecoded['amount'];
+          final courseId = resDecoded['courseId'];
+          return  PaymentIntentPage(
+            amount: amount,
+            courseId: courseId,
+          );
+        }),
 
     //shell route
     ShellRoute(

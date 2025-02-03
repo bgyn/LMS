@@ -15,8 +15,7 @@ class PaymentIntentError extends PaymentState {
 }
 
 class PaymentSuccess extends PaymentState {
-  final String paymentIntent;
-  PaymentSuccess(this.paymentIntent);
+  PaymentSuccess();
 }
 
 class PaymentError extends PaymentState {

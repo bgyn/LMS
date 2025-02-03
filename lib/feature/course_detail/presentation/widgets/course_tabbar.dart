@@ -81,6 +81,7 @@ class _CourseTabbarState extends State<CourseTabbar>
               price: widget.course.price!,
               instructor: widget.course.instructor!),
           LessonsTab(
+            courseId: widget.course.id!,
             lessons: widget.course.lessons!,
           ),
           const ReviewsTab(),

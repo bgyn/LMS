@@ -92,7 +92,7 @@ class CourseDetails extends StatelessWidget {
               title: "Enroll",
               onTap: () {
                 if (state is CourseDetailLoaded) {
-                  context.go(RoutePath.paymentIntent,
+                  context.push(RoutePath.paymentIntent,
                       extra: jsonEncode({
                         "amount": state.course.price,
                         "courseId": state.course.id
