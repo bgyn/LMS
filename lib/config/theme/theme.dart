@@ -12,8 +12,13 @@ ThemeData getAppTheme(BuildContext context) {
       useMaterial3: true,
       fontFamily: "PlusJakartaSans",
       scaffoldBackgroundColor: Colors.white,
-      appBarTheme: const AppBarTheme(
-        iconTheme: IconThemeData(color: Colors.white),
+      appBarTheme: AppBarTheme(
+        titleTextStyle: TextStyle(
+          fontFamily: 'PlusJakartaSans',
+          fontSize: 0.018.toRes(context),
+          fontWeight: FontWeight.w600,
+          color: Colors.black,
+        ),
       ),
       primaryColor: ColorPalette.primaryColor,
       textTheme: TextTheme(

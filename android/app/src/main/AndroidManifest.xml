@@ -3,10 +3,13 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:label="lms"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
+        >
 
         <service android:name="com.google.firebase.messaging.FirebaseMessagingService" android:exported="true" tools:replace="android:exported">
         <intent-filter>
@@ -34,6 +37,16 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+             <!-- Deep Linking -->
+            <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <!-- Accepts URIs that begin with YOUR_SCHEME://YOUR_HOST -->
+            <data
+                android:scheme="io.supabase.flutterquickstart"
+                android:host="login-callback" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

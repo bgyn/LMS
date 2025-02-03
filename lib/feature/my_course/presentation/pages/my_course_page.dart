@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class MyCoursePage extends StatelessWidget {
+  const MyCoursePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: const Text('My Course'),
       ),
       body: const Center(
-        child: Text('Welcome to the profile page'),
+        child: Text('My Course Page'),
       ),
     );
   }

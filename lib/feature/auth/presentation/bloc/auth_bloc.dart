@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lms/core/faliure/faliure.dart';
 import 'package:lms/core/utils/show_snackbar.dart';
 import 'package:lms/feature/auth/domain/usecase/is_user_logged_in.dart';
 import 'package:lms/feature/auth/domain/usecase/signin.dart';
@@ -9,42 +8,26 @@ import 'package:lms/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final IsUserLoggedIn _isUserLoggedIn;
   final Singin _singin;
   final Singout _singout;
   final Signup _signup;
+  final IsUserLoggedIn _isUserLoggedIn;
 
   AuthBloc(
-      {required IsUserLoggedIn isUserLoggedIn,
-      required Singin singin,
+      {required Singin singin,
       required Singout singout,
-      required Signup signup})
-      : _isUserLoggedIn = isUserLoggedIn,
-        _singin = singin,
+      required Signup signup,
+      required IsUserLoggedIn isUserLoggedIn})
+      : _singin = singin,
         _signup = signup,
         _singout = singout,
+        _isUserLoggedIn = isUserLoggedIn,
         super(AuthInitial()) {
-    on<AuthCheckRequested>(_onAuthCheckRequested);
     on<AuthSignIn>(_onAuthSignedIn);
     on<AuthSignUp>(_onAuthSignedUp);
     on<AuthSignOut>(_onAuthSignedOut);
-  }
-
-  void _onAuthCheckRequested(
-      AuthCheckRequested event, Emitter<AuthState> emit) async {
-    emit(AuthLoading());
-    final result = await _isUserLoggedIn.call(null);
-    result.fold(
-      (failure) {
-        if (failure is UnAuthorizedFailure) {
-          emit(Unauthenticated(failure.errorMessage));
-        } else {
-          showSnackbar(failure.errorMessage);
-          emit(Unauthenticated(failure.errorMessage));
-        }
-      },
-      (user) => emit(Authenticated(user)),
-    );
+    on<AuthIsUserLoggedIn>(_onAuthIsUserLoggedIn);
+    on<AuthIntialEvent>((event, emit) => emit(AuthInitial()));
   }
 
   void _onAuthSignedIn(AuthSignIn event, Emitter<AuthState> emit) async {
@@ -55,7 +38,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         showSnackbar(failure.errorMessage);
         emit(Unauthenticated(failure.errorMessage));
       },
-      (user) => emit(Authenticated(user)),
+      (res) => emit(Authenticated(res)),
     );
   }
 
@@ -67,7 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         showSnackbar(failure.errorMessage);
         emit(Unauthenticated(failure.errorMessage));
       },
-      (user) => emit(Authenticated(user)),
+      (res) => emit(Authenticated(res)),
     );
   }
 
@@ -80,6 +63,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(Unauthenticated(failure.errorMessage));
       },
       (_) => emit(AuthSignedOut()),
+    );
+  }
+
+  void _onAuthIsUserLoggedIn(
+      AuthIsUserLoggedIn event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+    final result = await _isUserLoggedIn.call(null);
+    result.fold(
+      (failure) {
+        emit(Unauthenticated(failure.errorMessage));
+      },
+      (res) => emit(Authenticated(res)),
     );
   }
 }

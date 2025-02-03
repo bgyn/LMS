@@ -15,6 +15,8 @@ class SharedUtility {
   //private constructor
   const SharedUtility._();
 
+  static const String _tokenKey = "token";
+
   static enxureInitialized() async {
     _pref ??= await SharedPreferences.getInstance();
     _instance ??= const SharedUtility._();
@@ -26,5 +28,21 @@ class SharedUtility {
 
   static bool getIsOnboarding() {
     return _pref!.getBool(_onboarding) ?? false;
+  }
+
+  static void setToken(String token) async {
+    await _pref!.setString(_tokenKey, token);
+  }
+
+  static Future<String?> getToken() async {
+    final String? token = _pref!.getString(_tokenKey);
+    if (token != null) {
+      return token;
+    }
+    return null;
+  }
+
+  static void deleteToken() async {
+    await _pref!.remove(_tokenKey);
   }
 }

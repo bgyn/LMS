@@ -1,7 +1,7 @@
-import 'package:lms/feature/auth/domain/model/user_model.dart';
+import 'package:lms/feature/auth/domain/model/auth_response_model.dart';
 
 sealed class AuthState {
-  final UserModel? user;
+  final AuthResponseModel? user;
   final String? errorMessage;
   AuthState({this.user, this.errorMessage});
 }
@@ -13,11 +13,16 @@ class AuthLoading extends AuthState {}
 class AuthLogginIn extends AuthState {}
 
 class Authenticated extends AuthState {
-  Authenticated(UserModel user) : super(user: user);
+  Authenticated(AuthResponseModel user) : super(user: user);
 }
 
 class AuthSignedOut extends AuthState {}
 
 class Unauthenticated extends AuthState {
   Unauthenticated(String errorMessage) : super(errorMessage: errorMessage);
+}
+
+//state for forgot password error and verify otp error and password reser error
+class AuthError extends AuthState {
+  AuthError(String errorMessage) : super(errorMessage: errorMessage);
 }
