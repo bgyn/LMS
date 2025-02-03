@@ -43,6 +43,7 @@ class _CourseTabbarState extends State<CourseTabbar>
           ),
           enableFeedback: false,
           splashFactory: NoSplash.splashFactory,
+          indicatorSize: TabBarIndicatorSize.tab,
           tabs: [
             Tab(
               child: Text(
