@@ -8,6 +8,7 @@ import 'package:lms/config/route/route_path.dart';
 import 'package:lms/core/utils/shared_utility.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_state.dart';
+import 'package:lms/feature/course/domain/model/course_model.dart';
 import 'package:lms/feature/course_detail/presentation/pages/course_details.dart';
 import 'package:lms/feature/password_reset/presentation/pages/forgot_password_page.dart';
 import 'package:lms/feature/password_reset/presentation/pages/password_reset_page.dart';
@@ -153,7 +154,9 @@ final routeConfig = GoRouter(
           final resDecoded = jsonDecode(res);
           final amount = resDecoded['amount'];
           final courseId = resDecoded['courseId'];
-          return  PaymentIntentPage(
+          final course = CourseModel.fromJson(jsonDecode(resDecoded['course']));
+          return PaymentIntentPage(
+            course: course,
             amount: amount,
             courseId: courseId,
           );

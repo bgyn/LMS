@@ -95,7 +95,8 @@ class CourseDetails extends StatelessWidget {
                   context.push(RoutePath.paymentIntent,
                       extra: jsonEncode({
                         "amount": state.course.price,
-                        "courseId": state.course.id
+                        "courseId": state.course.id,
+                        "course": jsonEncode(state.course.toJson())
                       }));
                 }
               }),

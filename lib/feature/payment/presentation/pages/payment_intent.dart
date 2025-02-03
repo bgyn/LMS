@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lms/core/extension/estension.dart';
 import 'package:lms/core/widgets/button.dart';
+import 'package:lms/feature/course/domain/model/course_model.dart';
 import 'package:lms/feature/payment/presentation/bloc/payment_bloc.dart';
 import 'package:lms/feature/payment/presentation/bloc/payment_event.dart';
 import 'package:lms/feature/payment/presentation/bloc/payment_state.dart';
@@ -17,8 +18,12 @@ import 'package:lms/feature/payment/presentation/widgets/payment_progress.dart';
 class PaymentIntentPage extends StatelessWidget {
   final int _amount;
   final String _courseId;
+  final CourseModel course;
   const PaymentIntentPage(
-      {super.key, required int amount, required String courseId})
+      {super.key,
+      required int amount,
+      required String courseId,
+      required this.course})
       : _amount = amount,
         _courseId = courseId;
 
@@ -29,6 +34,7 @@ class PaymentIntentPage extends StatelessWidget {
       child: PaymentIntent(
         amount: _amount,
         courseId: _courseId,
+        course: course,
       ),
     );
   }
@@ -37,19 +43,24 @@ class PaymentIntentPage extends StatelessWidget {
 class PaymentIntent extends StatelessWidget {
   final int _amount;
   final String _courseId;
+  final CourseModel course;
   const PaymentIntent(
-      {super.key, required int amount, required String courseId})
+      {super.key,
+      required int amount,
+      required String courseId,
+      required this.course})
       : _amount = amount,
         _courseId = courseId;
 
-  static const _pageList = [
-    Overview(),
-    PaymentOption(),
-    Confirmation(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final pageList = [
+      Overview(
+        course: course,
+      ),
+      const PaymentOption(),
+      const Confirmation(),
+    ];
     return Scaffold(
       appBar: AppBar(
         forceMaterialTransparency: true,
@@ -86,7 +97,7 @@ class PaymentIntent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const PaymentProgress(),
-                  Expanded(child: _pageList[currentIndex - 1]),
+                  Expanded(child: pageList[currentIndex - 1]),
                 ],
               ),
             );
