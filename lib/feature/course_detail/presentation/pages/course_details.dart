@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,75 +22,85 @@ class CourseDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => CourseDetailBloc(sl())..add(FetchCourseDetailEvent(id)),
-      child: Scaffold(
-        body: SafeArea(
-          child: BlocBuilder<CourseDetailBloc, CourseDetailState>(
-              builder: (context, state) {
-            if (state is CourseDetailLoaded) {
-              return Column(
-                children: [
-                  Stack(
-                    children: [
-                      CachedNetworkImage(
-                        imageUrl:
-                            UrlConstant.mediaUrl + state.course.thumbnail!,
-                        width: double.infinity,
-                        height: 0.25.h(context),
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error, size: 50),
-                      ),
-                      Positioned(
-                        top: -10,
-                        left: 0,
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
+      child: BlocBuilder<CourseDetailBloc, CourseDetailState>(
+          builder: (context, state) {
+        return Scaffold(
+          body: SafeArea(
+            child: state is CourseDetailLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : state is CourseDetailLoaded
+                    ? Column(
+                        children: [
+                          Stack(
+                            children: [
+                              CachedNetworkImage(
+                                imageUrl: UrlConstant.mediaUrl +
+                                    state.course.thumbnail!,
+                                width: double.infinity,
+                                height: 0.25.h(context),
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error, size: 50),
+                              ),
+                              Positioned(
+                                top: -10,
+                                left: 0,
+                                child: IconButton(
+                                  icon: const Icon(
+                                    Icons.arrow_back,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () {
+                                    context.pop();
+                                  },
+                                ),
+                              ),
+                              Positioned(
+                                top: -10,
+                                right: 0,
+                                child: IconButton(
+                                  icon: const Icon(
+                                    Icons.bookmark,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () {},
+                                ),
+                              ),
+                            ],
                           ),
-                          onPressed: () {
-                            context.pop();
-                          },
-                        ),
-                      ),
-                      Positioned(
-                        top: -10,
-                        right: 0,
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.bookmark,
-                            color: Colors.white,
+                          Expanded(
+                              child: CourseTabbar(
+                            course: state.course,
+                          )),
+                          SizedBox(
+                            height: 0.1.h(context),
                           ),
-                          onPressed: () {},
-                        ),
+                        ],
+                      )
+                    : const Center(
+                        child: Text("Error"),
                       ),
-                    ],
-                  ),
-                  Expanded(
-                      child: CourseTabbar(
-                    course: state.course,
-                  )),
-                  SizedBox(
-                    height: 0.1.h(context),
-                  ),
-                ],
-              );
-            }
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Button(
-            width: 0.9.w(context),
-            title: "Enroll",
-            onTap: () {
-              context.push(RoutePath.paymentIntent);
-            }),
-      ),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: Button(
+              width: 0.9.w(context),
+              title: "Enroll",
+              onTap: () {
+                if (state is CourseDetailLoaded) {
+                  context.go(RoutePath.paymentIntent,
+                      extra: jsonEncode({
+                        "amount": state.course.price,
+                        "courseId": state.course.id
+                      }));
+                }
+              }),
+        );
+      }),
     );
   }
 }

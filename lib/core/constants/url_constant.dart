@@ -2,7 +2,10 @@ class UrlConstant {
   UrlConstant._();
 
   static const String baseUrl = 'https://lms.bgyn.live/api/v1';
+  // static const String baseUrl = 'http://192.168.1.214:3000/api/v1';
+
   static const String mediaUrl = 'https://lms.bgyn.live';
+  // static const String mediaUrl = 'http://192.168.1.214:3000';
 
   static String login() {
     return '$baseUrl/auth/login';
@@ -36,8 +39,8 @@ class UrlConstant {
     return '$baseUrl/course/$id';
   }
 
-  static String video(String path) {
-    return '$baseUrl/video?path=$path';
+  static String video(String path, String courseId) {
+    return '$baseUrl/video?courseId=$courseId&path=$path';
   }
 
   static String createPaymentIntent() {

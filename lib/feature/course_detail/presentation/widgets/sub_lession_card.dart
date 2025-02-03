@@ -6,8 +6,10 @@ import 'package:lms/feature/video_player/presentation/widget/video_player_screen
 
 class SubLessonCard extends StatelessWidget {
   final List<SubLesson> subLessons;
+  final String courseId;
 
-  const SubLessonCard({super.key, required this.subLessons});
+  const SubLessonCard(
+      {super.key, required this.subLessons, required this.courseId});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,8 @@ class SubLessonCard extends StatelessWidget {
                 icon: const Icon(Icons.play_arrow,
                     color: ColorPalette.primaryColor),
                 onPressed: () {
-                  showVideoDialog(subLesson.video!.url.toString(), context);
+                  showVideoDialog(
+                      courseId, subLesson.video!.url.toString(), context);
                 },
               ),
             );

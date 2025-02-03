@@ -7,13 +7,15 @@ import 'package:lms/feature/video_player/presentation/cubit/video_player_state.d
 
 class VideoPlayerScreen extends StatelessWidget {
   final String url;
+  final String courseId;
 
-  const VideoPlayerScreen({super.key, required this.url});
+  const VideoPlayerScreen(
+      {super.key, required this.url, required this.courseId});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => VideoPlayerCubit()..initializeVideo(url),
+      create: (context) => VideoPlayerCubit()..initializeVideo(url, courseId),
       child: BlocBuilder<VideoPlayerCubit, VideoPlayerState>(
         builder: (context, state) {
           if (state is VideoLoading) {
@@ -37,7 +39,7 @@ class VideoPlayerScreen extends StatelessWidget {
   }
 }
 
-void showVideoDialog(String url, BuildContext context) {
+void showVideoDialog(String courseId, String url, BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -49,7 +51,10 @@ void showVideoDialog(String url, BuildContext context) {
         child: SizedBox(
           width: 0.9.w(context),
           height: 0.4.h(context),
-          child: VideoPlayerScreen(url: url),
+          child: VideoPlayerScreen(
+            url: url,
+            courseId: courseId,
+          ),
         ),
       );
     },

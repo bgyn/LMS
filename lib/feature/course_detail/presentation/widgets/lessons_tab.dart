@@ -6,8 +6,9 @@ import 'package:lms/feature/course_detail/presentation/widgets/sub_lession_card.
 
 class LessonsTab extends StatelessWidget {
   final List<LessonModel> lessons;
+  final String courseId;
 
-  const LessonsTab({super.key, required this.lessons});
+  const LessonsTab({super.key, required this.lessons, required this.courseId});
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +84,9 @@ class LessonsTab extends StatelessWidget {
                         ],
                       ),
                       children: [
-                        SubLessonCard(subLessons: lessons[index].subLessons!),
+                        SubLessonCard(
+                            courseId: courseId,
+                            subLessons: lessons[index].subLessons!),
                       ],
                     ),
                   ),
