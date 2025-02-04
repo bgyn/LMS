@@ -23,6 +23,7 @@ import 'package:lms/feature/payment/presentation/pages/payment_intent.dart';
 import 'package:lms/feature/profile/domain/model/profile_model.dart';
 import 'package:lms/feature/profile/presentation/pages/edit_profile_page.dart';
 import 'package:lms/feature/profile/presentation/pages/profile_page.dart';
+import 'package:lms/feature/splash/presentation/cubit/splash_cubit.dart';
 import 'package:lms/feature/splash/presentation/splash_page.dart';
 import 'package:lms/feature/home/presentation/pages/home_pages.dart';
 import 'package:lms/injection_container.dart';
@@ -36,9 +37,10 @@ final routeConfig = GoRouter(
   refreshListenable: StreamToListenable([
     sl<AuthBloc>().stream,
   ]),
-  redirect: (context, state) {
+  redirect: (context, state) async {
     final isOnboarded = SharedUtility.getIsOnboarding();
     final authState = context.read<AuthBloc>().state;
+    final splashCubit = context.read<SplashCubit>();
 
     final isLoggingIn = authState is AuthLoading;
     final isLoggedIn = authState is Authenticated;
@@ -94,6 +96,7 @@ final routeConfig = GoRouter(
         (isLoggedIn && isGoingToSignUp) ||
         (isOnboarded && isGoingToOnboarding) ||
         (isGoingToInit && !isLoggingIn)) {
+      await splashCubit.stream.firstWhere((loaded) => loaded == true);
       return homeLocation;
     }
 

@@ -54,4 +54,9 @@ class UrlConstant {
   static String createPaymentIntent() {
     return '$baseUrl/payment/create-payment-intent';
   }
+
+  static String myEnrollment(){
+    return '$baseUrl/enrollment';
+  }
+
 }

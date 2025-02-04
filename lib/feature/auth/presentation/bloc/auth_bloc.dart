@@ -13,12 +13,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final Signup _signup;
   final IsUserLoggedIn _isUserLoggedIn;
 
-  AuthBloc(
-      {required Singin singin,
-      required Singout singout,
-      required Signup signup,
-      required IsUserLoggedIn isUserLoggedIn})
-      : _singin = singin,
+  AuthBloc({
+    required Singin singin,
+    required Singout singout,
+    required Signup signup,
+    required IsUserLoggedIn isUserLoggedIn,
+  })  : _singin = singin,
         _signup = signup,
         _singout = singout,
         _isUserLoggedIn = isUserLoggedIn,

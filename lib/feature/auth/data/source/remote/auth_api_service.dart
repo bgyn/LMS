@@ -20,6 +20,7 @@ class AuthApiService {
           if (deviceInfo != null) "deviceInfo": deviceInfo,
         },
       );
+
       if (response.statusCode == 200) {
         final res = AuthResponseModel.fromJson(response.body);
         if (res.accessToken == null && res.refreshToken == null) {
@@ -80,6 +81,7 @@ class AuthApiService {
       final response =
           await http.post(Uri.parse(url), body: {"accessToken": token});
       if (response.statusCode == 200) {
+        print(response.body);
         return null;
       } else if (response.statusCode == 401) {
         final token = await _refreshToken();
