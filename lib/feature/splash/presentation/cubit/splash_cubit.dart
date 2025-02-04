@@ -29,13 +29,12 @@ class SplashCubit extends Cubit<bool> {
     _myCourseSubscription = myCourseBloc.stream.listen((myCourseState) {
       if (myCourseState is MyCourseFailure) {
         emit(false);
-        loadingCompleter?.complete();
+        // loadingCompleter?.complete();
       } else if (myCourseState is MyCourseSuccess) {
         emit(true);
-        loadingCompleter!.isCompleted ? null : loadingCompleter?.complete();
+        // loadingCompleter?.complete();
       }
     });
-    await loadingCompleter!.future;
   }
 
   void _loadInitialData() {
