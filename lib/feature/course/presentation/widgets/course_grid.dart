@@ -50,8 +50,8 @@ class CourseGrid extends StatelessWidget {
                               width: double.infinity,
                               height: imageHeight,
                               fit: BoxFit.cover,
-                              placeholder: (context, url) =>
-                                  const CircularProgressIndicator(),
+                              placeholder: (context, url) => const Center(
+                                  child: CircularProgressIndicator()),
                               errorWidget: (context, url, error) =>
                                   const Icon(Icons.error, size: 50),
                             ),

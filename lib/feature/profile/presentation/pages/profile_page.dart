@@ -47,7 +47,7 @@ class ProfilePage extends StatelessWidget {
                             height: 120,
                             fit: BoxFit.cover,
                             placeholder: (context, url) =>
-                                const CircularProgressIndicator(),
+                                const Center(child: CircularProgressIndicator()),
                             errorWidget: (context, url, error) =>
                                 const Icon(Icons.error, size: 50),
                           ),
