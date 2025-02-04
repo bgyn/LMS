@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(create: (_) => CourseBloc(sl())),
           BlocProvider(create: (_) => PaymentBloc(sl())),
           BlocProvider(create: (_) => StripeCubit()),
-          BlocProvider(create: (_) => MyCourseBloc(sl())),
+          BlocProvider(create: (_) => sl<MyCourseBloc>()),
           BlocProvider(
               create: (_) => SplashCubit(
                     authbloc: sl(),

@@ -89,5 +89,5 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<MyCourseApiService>(MyCourseApiService());
   sl.registerSingleton<MyCourseRepository>(MyCourseRepositoryImpl(sl()));
   sl.registerSingleton<GetMyCourses>(GetMyCourses(sl()));
-  sl.registerLazySingleton<MyCourseBloc>(()=> MyCourseBloc(sl()));
+  sl.registerLazySingleton<MyCourseBloc>(() => MyCourseBloc(sl()));
 }
