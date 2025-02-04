@@ -12,6 +12,8 @@ import 'package:lms/feature/course_detail/presentation/bloc/course_detail_bloc.d
 import 'package:lms/feature/course_detail/presentation/bloc/course_detail_event.dart';
 import 'package:lms/feature/course_detail/presentation/bloc/course_detail_state.dart';
 import 'package:lms/feature/course_detail/presentation/widgets/course_tabbar.dart';
+import 'package:lms/feature/my_course/presentation/bloc/my_course_bloc.dart';
+import 'package:lms/feature/my_course/presentation/bloc/my_course_state.dart';
 import 'package:lms/injection_container.dart';
 
 class CourseDetails extends StatelessWidget {
@@ -20,6 +22,7 @@ class CourseDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mycourseState = context.read<MyCourseBloc>().state;
     return BlocProvider(
       create: (_) => CourseDetailBloc(sl())..add(FetchCourseDetailEvent(id)),
       child: BlocBuilder<CourseDetailBloc, CourseDetailState>(
@@ -76,9 +79,15 @@ class CourseDetails extends StatelessWidget {
                               child: CourseTabbar(
                             course: state.course,
                           )),
-                          SizedBox(
-                            height: 0.1.h(context),
-                          ),
+                          mycourseState is MyCourseSuccess
+                              ? Visibility(
+                                  visible: !mycourseState.myCourses.any(
+                                      (element) => element.course!.id == id),
+                                  child: SizedBox(
+                                    height: 0.1.h(context),
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
                         ],
                       )
                     : const Center(
@@ -87,19 +96,24 @@ class CourseDetails extends StatelessWidget {
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: Button(
-              width: 0.9.w(context),
-              title: "Enroll",
-              onTap: () {
-                if (state is CourseDetailLoaded) {
-                  context.push(RoutePath.paymentIntent,
-                      extra: jsonEncode({
-                        "amount": state.course.price,
-                        "courseId": state.course.id,
-                        "course": jsonEncode(state.course.toJson())
-                      }));
-                }
-              }),
+          floatingActionButton: mycourseState is MyCourseSuccess
+              ? Visibility(
+                  visible: !mycourseState.myCourses
+                      .any((element) => element.course!.id == id),
+                  child: Button(
+                      width: 0.9.w(context),
+                      title: "Enroll",
+                      onTap: () {
+                        if (state is CourseDetailLoaded) {
+                          context.push(RoutePath.paymentIntent,
+                              extra: jsonEncode({
+                                "amount": state.course.price,
+                                "courseId": state.course.id,
+                                "course": jsonEncode(state.course.toJson())
+                              }));
+                        }
+                      }))
+              : const SizedBox.shrink(),
         );
       }),
     );
