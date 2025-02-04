@@ -12,24 +12,27 @@ class SplashCubit extends Cubit<bool> {
   final MyCourseBloc myCourseBloc;
   Completer<void>? loadingCompleter = Completer<void>();
 
+  StreamSubscription? _authSubscription;
+  StreamSubscription? _myCourseSubscription;
+
   SplashCubit({required this.authbloc, required this.myCourseBloc})
       : super(false) {
     _intialize();
   }
 
   Future<void> _intialize() async {
-    authbloc.stream.listen((authState) {
+    _authSubscription = authbloc.stream.listen((authState) {
       if (authState is Authenticated) {
         _loadInitialData();
       }
     });
-    myCourseBloc.stream.listen((myCourseState) {
+    _myCourseSubscription = myCourseBloc.stream.listen((myCourseState) {
       if (myCourseState is MyCourseFailure) {
         emit(false);
         loadingCompleter?.complete();
       } else if (myCourseState is MyCourseSuccess) {
         emit(true);
-        loadingCompleter?.complete();
+        loadingCompleter!.isCompleted ? null : loadingCompleter?.complete();
       }
     });
     await loadingCompleter!.future;
@@ -52,5 +55,12 @@ class SplashCubit extends Cubit<bool> {
     if (!loadingCompleter!.isCompleted) {
       loadingCompleter!.complete();
     }
+  }
+
+  @override
+  Future<void> close() {
+    _authSubscription?.cancel();
+    _myCourseSubscription?.cancel();
+    return super.close();
   }
 }
