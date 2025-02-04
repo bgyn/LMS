@@ -9,7 +9,7 @@ class CourseDetailApiService {
   Future<CourseModel> getCourseById(String id) async {
     final url = UrlConstant.courseById(id);
     try {
-      final token = await SharedUtility.getToken();
+      final token = await SharedUtility.getAccessToken();
       final response = await http.get(Uri.parse(url), headers: {
         "Authorization": "Bearer $token",
       });

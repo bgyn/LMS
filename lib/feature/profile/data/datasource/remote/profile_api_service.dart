@@ -10,7 +10,7 @@ class ProfileApiService {
   Future<ProfileModel> getProfile() async {
     final url = UrlConstant.profile();
     try {
-      final token = await SharedUtility.getToken();
+      final token = await SharedUtility.getAccessToken();
       final response = await http.get(Uri.parse(url), headers: {
         "Authorization": "Bearer $token",
       });
@@ -31,7 +31,7 @@ class ProfileApiService {
       {File? file, String? name, String? bio}) async {
     final url = UrlConstant.profile();
     try {
-      final token = await SharedUtility.getToken();
+      final token = await SharedUtility.getAccessToken();
       final request = http.MultipartRequest("PATCH", Uri.parse(url));
       final headers = {
         "Authorization": "Bearer $token",

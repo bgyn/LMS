@@ -2,7 +2,6 @@ import 'package:fpdart/fpdart.dart';
 import 'package:lms/core/faliure/faliure.dart';
 import 'package:lms/core/params/signup_params.dart';
 import 'package:lms/core/usecase/usecase.dart';
-import 'package:lms/feature/auth/domain/model/auth_response_model.dart';
 import 'package:lms/feature/auth/domain/repository/auth_repository.dart';
 
 class Signup extends UseCase<void, SigupParams> {
@@ -10,7 +9,7 @@ class Signup extends UseCase<void, SigupParams> {
 
   Signup(this._authRepository);
   @override
-  Future<Either<Failure, AuthResponseModel>> call(SigupParams params) {
+  Future<Either<Failure, void>> call(SigupParams params) {
     return _authRepository.signUpWithEmailAndPassword(
         params.email, params.password, params.name);
   }

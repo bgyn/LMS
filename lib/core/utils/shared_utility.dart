@@ -16,6 +16,7 @@ class SharedUtility {
   const SharedUtility._();
 
   static const String _tokenKey = "token";
+  static const String _refreshToken = "refreshToken";
 
   static enxureInitialized() async {
     _pref ??= await SharedPreferences.getInstance();
@@ -30,12 +31,24 @@ class SharedUtility {
     return _pref!.getBool(_onboarding) ?? false;
   }
 
-  static void setToken(String token) async {
+  static void setAccessToken(String token) async {
     await _pref!.setString(_tokenKey, token);
   }
 
-  static Future<String?> getToken() async {
+  static void setRefreshToken(String token) async {
+    await _pref!.setString(_refreshToken, token);
+  }
+
+  static Future<String?> getAccessToken() async {
     final String? token = _pref!.getString(_tokenKey);
+    if (token != null) {
+      return token;
+    }
+    return null;
+  }
+
+  static Future<String?> getRefreshToken() async {
+    final String? token = _pref!.getString(_refreshToken);
     if (token != null) {
       return token;
     }
@@ -44,5 +57,6 @@ class SharedUtility {
 
   static void deleteToken() async {
     await _pref!.remove(_tokenKey);
+    await _pref!.remove(_refreshToken);
   }
 }

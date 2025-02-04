@@ -2,7 +2,6 @@ import 'package:fpdart/fpdart.dart';
 import 'package:lms/core/faliure/faliure.dart';
 import 'package:lms/feature/auth/data/source/localsource/auth_local_service.dart';
 import 'package:lms/feature/auth/data/source/remote/auth_api_service.dart';
-import 'package:lms/feature/auth/domain/model/auth_response_model.dart';
 import 'package:lms/feature/auth/domain/repository/auth_repository.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
@@ -11,12 +10,13 @@ class AuthRepositoryImpl extends AuthRepository {
   AuthRepositoryImpl(this._authApiService, this._localAuthApiService);
 
   @override
-  Future<Either<Failure, AuthResponseModel>> signInWithEmailAndPassword(
+  Future<Either<Failure, void>> signInWithEmailAndPassword(
       String email, String password) async {
     try {
       final result = await _authApiService.login(email, password);
-      _localAuthApiService.saveToken(result.accessToken);
-      return right(result);
+      _localAuthApiService.saveAccessToken(result.accessToken!);
+      _localAuthApiService.saveRefreshToken(result.refreshToken!);
+      return right(null);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
     }
@@ -33,25 +33,26 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Failure, AuthResponseModel>> signUpWithEmailAndPassword(
+  Future<Either<Failure, void>> signUpWithEmailAndPassword(
       String email, String password, String fullName) async {
     try {
       final result = await _authApiService.register(email, password, fullName);
-      _localAuthApiService.saveToken(result.accessToken);
-      return right(result);
+      _localAuthApiService.saveAccessToken(result.accessToken!);
+      _localAuthApiService.saveRefreshToken(result.refreshToken!);
+      return right(null);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, AuthResponseModel>> isUserLoggedIn() async {
+  Future<Either<Failure, void>> isUserLoggedIn() async {
     try {
-      final result = await _localAuthApiService.isUserLoggedIn();
+      final result = await _authApiService.verifyToken();
       if (result != null) {
-        return right(AuthResponseModel(accessToken: result));
+        _localAuthApiService.saveAccessToken(result);
       }
-      return left(const ServerFailure("User not logged in"));
+      return right(null);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
     }

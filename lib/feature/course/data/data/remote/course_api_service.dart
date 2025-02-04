@@ -10,7 +10,7 @@ class CourseApiService {
     final url = UrlConstant.allCourse();
 
     try {
-      final token = await SharedUtility.getToken();
+      final token = await SharedUtility.getAccessToken();
       final response = await http.get(Uri.parse(url), headers: {
         "Authorization": "Bearer $token",
       });

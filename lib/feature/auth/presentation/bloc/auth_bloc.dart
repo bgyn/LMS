@@ -38,7 +38,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         showSnackbar(failure.errorMessage);
         emit(Unauthenticated(failure.errorMessage));
       },
-      (res) => emit(Authenticated(res)),
+      (res) => emit(Authenticated()),
     );
   }
 
@@ -50,7 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         showSnackbar(failure.errorMessage);
         emit(Unauthenticated(failure.errorMessage));
       },
-      (res) => emit(Authenticated(res)),
+      (res) => emit(Authenticated()),
     );
   }
 
@@ -74,7 +74,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (failure) {
         emit(Unauthenticated(failure.errorMessage));
       },
-      (res) => emit(Authenticated(res)),
+      (res) => emit(Authenticated()),
     );
   }
 }

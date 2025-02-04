@@ -14,7 +14,7 @@ class VideoPlayerCubit extends Cubit<VideoPlayerState> {
   void initializeVideo(String url, String courseId) async {
     emit(VideoLoading());
     try {
-      final token = await SharedUtility.getToken();
+      final token = await SharedUtility.getAccessToken();
       final videoUrl = UrlConstant.video(url, courseId);
       final response = await http.get(Uri.parse(videoUrl), headers: {
         "Authorization": "Bearer $token",

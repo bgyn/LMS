@@ -8,7 +8,7 @@ class PaymentApiService {
   Future<String> createPaymentIntent(String amount, String courseId) async {
     final url = UrlConstant.createPaymentIntent();
     try {
-      final token = await SharedUtility.getToken();
+      final token = await SharedUtility.getAccessToken();
       final response = await http.post(Uri.parse(url), headers: {
         "Authorization": "Bearer $token",
       }, body: {
