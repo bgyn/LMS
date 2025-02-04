@@ -54,7 +54,7 @@ class AuthApiService {
       );
       if (response.statusCode == 200) {
         final res = AuthResponseModel.fromJson(response.body);
-        if (res.accessToken != null && res.refreshToken != null) {
+        if (res.accessToken == null && res.refreshToken == null) {
           throw Exception("Failed to Register");
         }
         return res;
