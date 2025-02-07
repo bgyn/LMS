@@ -33,6 +33,18 @@ android {
         versionName = flutter.versionName
     }
 
+    flavorDimensions "app"
+    productFlavors{
+        admin {
+            dimension "app"
+            applicationId "com.example.lms"
+        }
+        client {
+            dimension "app"
+            applicationId "com.example.lms"
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

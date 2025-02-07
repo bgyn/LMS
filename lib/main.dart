@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:lms/config/flavor_config.dart';
 import 'package:lms/config/route/app_route.dart';
 import 'package:lms/config/theme/theme.dart';
 import 'package:lms/core/permisson/permission.dart';
@@ -31,6 +32,7 @@ Future<void> main() async {
   PermissionHandler.init();
   Stripe.publishableKey = dotenv.get("PUBLISHABLE_KEY");
   await initializeDependencies();
+  FlavorConfig(flavor: Flavor.client, name: "LMS");
   runApp(
     const MyApp(),
   );
@@ -76,7 +78,7 @@ class _MyAppState extends State<MyApp> {
         child: MaterialApp.router(
           scaffoldMessengerKey: scaffoldMessengerKey,
           debugShowCheckedModeBanner: false,
-          title: 'LMS',
+          title: FlavorConfig.instance.name,
           theme: getAppTheme(context),
           routerDelegate: routeConfig.routerDelegate,
           routeInformationParser: routeConfig.routeInformationParser,
