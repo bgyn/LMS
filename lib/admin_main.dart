@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lms/admin/config/app_route.dart';
-import 'package:lms/config/flavor_config.dart';
-import 'package:lms/config/theme/theme.dart';
-import 'package:lms/core/permisson/permission.dart';
-import 'package:lms/core/utils/shared_utility.dart';
-import 'package:lms/core/utils/show_snackbar.dart';
-import 'package:lms/injection_container.dart';
+import 'package:lms/client/config/flavor_config.dart';
+import 'package:lms/client/config/theme/theme.dart';
+import 'package:lms/client/core/permisson/permission.dart';
+import 'package:lms/client/core/utils/shared_utility.dart';
+import 'package:lms/client/core/utils/show_snackbar.dart';
+import 'package:lms/client/injection_container.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
