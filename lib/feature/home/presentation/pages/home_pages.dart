@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lms/config/route/route_path.dart';
 import 'package:lms/config/theme/theme.dart';
 import 'package:lms/core/extension/estension.dart';
 import 'package:lms/feature/course/presentation/bloc/course_bloc.dart';
@@ -70,7 +72,9 @@ class _HomePagesState extends State<HomePages> {
                 color: Colors.grey,
               )),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.push(RoutePath.notification);
+              },
               icon: const Icon(
                 Icons.notifications,
                 color: Colors.grey,

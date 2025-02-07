@@ -12,6 +12,7 @@ import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:lms/feature/course/presentation/bloc/course_bloc.dart';
 import 'package:lms/feature/my_course/presentation/bloc/my_course_bloc.dart';
+import 'package:lms/feature/notifications/presentation/bloc/notification_bloc.dart';
 import 'package:lms/feature/password_reset/presentation/bloc/password_reset_bloc.dart';
 import 'package:lms/feature/payment/presentation/bloc/payment_bloc.dart';
 import 'package:lms/feature/payment/presentation/cubit/stripe_cubit.dart';
@@ -61,6 +62,11 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(create: (_) => PaymentBloc(sl())),
           BlocProvider(create: (_) => StripeCubit()),
           BlocProvider(create: (_) => sl<MyCourseBloc>()),
+          BlocProvider(
+              create: (_) => NotificationBloc(
+                  fetchNotification: sl(),
+                  markAsRead: sl(),
+                  markAllAsRead: sl())),
           BlocProvider(
               create: (_) => SplashCubit(
                     authbloc: sl(),

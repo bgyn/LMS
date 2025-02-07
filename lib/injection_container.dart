@@ -21,6 +21,12 @@ import 'package:lms/feature/my_course/data/source/remote/my_course_api_service.d
 import 'package:lms/feature/my_course/domain/repository/my_course_repository.dart';
 import 'package:lms/feature/my_course/domain/usecase/get_my_courses.dart';
 import 'package:lms/feature/my_course/presentation/bloc/my_course_bloc.dart';
+import 'package:lms/feature/notifications/data/repository/notification_repository_impl.dart';
+import 'package:lms/feature/notifications/data/source/remote/notification_api_service.dart';
+import 'package:lms/feature/notifications/domain/repository/notifications_repository.dart';
+import 'package:lms/feature/notifications/domain/usecase/fetch_notification.dart';
+import 'package:lms/feature/notifications/domain/usecase/mark_all_as_read.dart';
+import 'package:lms/feature/notifications/domain/usecase/mark_as_read.dart';
 import 'package:lms/feature/password_reset/data/repository/password_reset_repository_impl.dart';
 import 'package:lms/feature/password_reset/data/source/remote/password_reset_api_service.dart';
 import 'package:lms/feature/password_reset/domain/repository/password_reset_repository.dart';
@@ -90,4 +96,12 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<MyCourseRepository>(MyCourseRepositoryImpl(sl()));
   sl.registerSingleton<GetMyCourses>(GetMyCourses(sl()));
   sl.registerLazySingleton<MyCourseBloc>(() => MyCourseBloc(sl()));
+
+  //notification
+  sl.registerSingleton<NotificationApiService>(NotificationApiService());
+  sl.registerSingleton<NotificationRepository>(
+      NotificationRepositoryImpl(sl()));
+  sl.registerSingleton<FetchNotification>(FetchNotification(sl()));
+  sl.registerSingleton<MarkAsRead>(MarkAsRead(sl()));
+  sl.registerSingleton<MarkAllAsRead>(MarkAllAsRead(sl()));
 }

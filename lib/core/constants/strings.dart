@@ -43,4 +43,5 @@ class Strings {
   static const verify = "Verify";
   static const editProfile = "Edit Profile";
   static const save = "Save";
+  static const notification = "Notification";
 }

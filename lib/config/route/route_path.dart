@@ -14,4 +14,5 @@ class RoutePath {
   static const myCourse = "/mycourse";
   static const courseDetail = "/coursedetail";
   static const paymentIntent = "/paymentintent";
+  static const notification = "/notification";
 }

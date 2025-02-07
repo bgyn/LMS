@@ -55,8 +55,19 @@ class UrlConstant {
     return '$baseUrl/payment/create-payment-intent';
   }
 
-  static String myEnrollment(){
+  static String myEnrollment() {
     return '$baseUrl/enrollment';
   }
 
+  static String notifcation() {
+    return '$baseUrl/notification';
+  }
+
+  static String markAllAsRead() {
+    return '$baseUrl/notification/read';
+  }
+
+  static String markAsRead(String id) {
+    return '$baseUrl/notification/read?id=$id';
+  }
 }

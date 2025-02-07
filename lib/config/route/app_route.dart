@@ -10,6 +10,7 @@ import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lms/feature/auth/presentation/bloc/auth_state.dart';
 import 'package:lms/feature/course/domain/model/course_model.dart';
 import 'package:lms/feature/course_detail/presentation/pages/course_details.dart';
+import 'package:lms/feature/notifications/presentation/pages/notification_page.dart';
 import 'package:lms/feature/password_reset/presentation/pages/forgot_password_page.dart';
 import 'package:lms/feature/password_reset/presentation/pages/password_reset_page.dart';
 import 'package:lms/feature/auth/presentation/pages/sign_in_page.dart';
@@ -160,6 +161,11 @@ final routeConfig = GoRouter(
             amount: amount,
             courseId: courseId,
           );
+        }),
+    GoRoute(
+        path: RoutePath.notification,
+        builder: (context, state) {
+          return const NotificationPage();
         }),
 
     //shell route
