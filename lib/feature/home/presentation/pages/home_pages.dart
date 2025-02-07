@@ -64,7 +64,10 @@ class _HomePagesState extends State<HomePages> {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
+              splashColor: Colors.transparent,
+              onPressed: () {
+                context.push(RoutePath.settings);
+              },
               alignment: Alignment.centerRight,
               padding: const EdgeInsets.all(0),
               icon: const Icon(
@@ -72,6 +75,7 @@ class _HomePagesState extends State<HomePages> {
                 color: Colors.grey,
               )),
           IconButton(
+              splashColor: Colors.transparent,
               onPressed: () {
                 context.push(RoutePath.notification);
               },

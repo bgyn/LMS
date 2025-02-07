@@ -24,6 +24,7 @@ import 'package:lms/feature/payment/presentation/pages/payment_intent.dart';
 import 'package:lms/feature/profile/domain/model/profile_model.dart';
 import 'package:lms/feature/profile/presentation/pages/edit_profile_page.dart';
 import 'package:lms/feature/profile/presentation/pages/profile_page.dart';
+import 'package:lms/feature/setting/presentation/pages/setting_page.dart';
 import 'package:lms/feature/splash/presentation/splash_page.dart';
 import 'package:lms/feature/home/presentation/pages/home_pages.dart';
 import 'package:lms/injection_container.dart';
@@ -166,6 +167,12 @@ final routeConfig = GoRouter(
         path: RoutePath.notification,
         builder: (context, state) {
           return const NotificationPage();
+        }),
+
+    GoRoute(
+        path: RoutePath.settings,
+        builder: (context, state) {
+          return const SettingPage();
         }),
 
     //shell route

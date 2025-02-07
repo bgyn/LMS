@@ -9,8 +9,6 @@ import 'package:lms/core/constants/strings.dart';
 import 'package:lms/core/constants/url_constant.dart';
 import 'package:lms/core/extension/estension.dart';
 import 'package:lms/core/widgets/button.dart';
-import 'package:lms/feature/auth/presentation/bloc/auth_bloc.dart';
-import 'package:lms/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:lms/feature/profile/presentation/bloc/profile_bloc.dart';
 import 'package:lms/feature/profile/presentation/bloc/profile_state.dart';
 
@@ -46,8 +44,8 @@ class ProfilePage extends StatelessWidget {
                             width: 120,
                             height: 120,
                             fit: BoxFit.cover,
-                            placeholder: (context, url) =>
-                                const Center(child: CircularProgressIndicator()),
+                            placeholder: (context, url) => const Center(
+                                child: CircularProgressIndicator()),
                             errorWidget: (context, url, error) =>
                                 const Icon(Icons.error, size: 50),
                           ),
@@ -100,12 +98,6 @@ class ProfilePage extends StatelessWidget {
                         final profile = jsonEncode(state.profile!.toMap());
                         context.push(RoutePath.editProfile, extra: profile);
                       }),
-                  Button(
-                      width: 0.5.w(context),
-                      title: "Logout",
-                      onTap: () {
-                        context.read<AuthBloc>().add(AuthSignOut());
-                      })
                 ],
               ),
             ),

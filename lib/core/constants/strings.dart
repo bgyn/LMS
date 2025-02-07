@@ -38,10 +38,14 @@ class Strings {
   static const haveAccount = "Already have an account?";
   static const signupHere = "Sign up here";
   static const signinHere = "Sign in here";
+  static const logout = "Logout";
   static const send = "send";
   static const reset = "Reset";
   static const verify = "Verify";
   static const editProfile = "Edit Profile";
   static const save = "Save";
   static const notification = "Notification";
+  static const setting = "Settings";
+  static const termsAndCondidtion = "Terms & Conditions";
+  static const helpCenter = "Help Center";
 }
