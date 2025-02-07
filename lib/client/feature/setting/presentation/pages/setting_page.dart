@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/client/core/constants/strings.dart';
-import 'package:lms/client/core/extension/estension.dart';
+import 'package:lms/shared/core/extension/estension.dart';
 import 'package:lms/client/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lms/client/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:lms/client/feature/setting/presentation/widgets/setting_options.dart';

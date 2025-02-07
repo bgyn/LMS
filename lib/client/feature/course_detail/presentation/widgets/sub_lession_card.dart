@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lms/client/config/theme/theme.dart';
-import 'package:lms/client/core/extension/estension.dart';
+import 'package:lms/shared/core/extension/estension.dart';
 import 'package:lms/client/feature/course/domain/model/lesson_model.dart';
 import 'package:lms/client/feature/video_player/presentation/widget/video_player_screen.dart';
 

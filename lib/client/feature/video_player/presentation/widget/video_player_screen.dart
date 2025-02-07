@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:chewie/chewie.dart';
-import 'package:lms/client/core/extension/estension.dart';
+import 'package:lms/shared/core/extension/estension.dart';
 import 'package:lms/client/feature/video_player/presentation/cubit/video_player_cubit.dart';
 import 'package:lms/client/feature/video_player/presentation/cubit/video_player_state.dart';
 

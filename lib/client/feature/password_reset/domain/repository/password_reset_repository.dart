@@ -1,5 +1,5 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:lms/client/core/faliure/faliure.dart';
+import 'package:lms/shared/core/faliure/faliure.dart';
 
 abstract class PasswordResetRepository {
   Future<Either<Failure, void>> sendPasswordResetRequest(String email);

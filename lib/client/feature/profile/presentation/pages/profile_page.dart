@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lms/client/config/route/route_path.dart';
 import 'package:lms/client/core/constants/strings.dart';
 import 'package:lms/client/core/constants/url_constant.dart';
-import 'package:lms/client/core/extension/estension.dart';
+import 'package:lms/shared/core/extension/estension.dart';
 import 'package:lms/client/core/widgets/button.dart';
 import 'package:lms/client/feature/profile/presentation/bloc/profile_bloc.dart';
 import 'package:lms/client/feature/profile/presentation/bloc/profile_state.dart';

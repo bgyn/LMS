@@ -1,5 +1,5 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:lms/client/core/faliure/faliure.dart';
+import 'package:lms/shared/core/faliure/faliure.dart';
 import 'package:lms/client/core/params/update_profile_params.dart';
 import 'package:lms/client/feature/profile/data/datasource/remote/profile_api_service.dart';
 import 'package:lms/client/feature/profile/domain/model/profile_model.dart';

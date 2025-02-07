@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:lms/client/core/faliure/faliure.dart';
-import 'package:lms/client/core/usecase/usecase.dart';
+import 'package:lms/shared/core/faliure/faliure.dart';
+import 'package:lms/shared/core/usecase/usecase.dart';
 import 'package:lms/client/feature/password_reset/domain/repository/password_reset_repository.dart';
 
 class SendPasswordReset extends UseCase<void, String> {

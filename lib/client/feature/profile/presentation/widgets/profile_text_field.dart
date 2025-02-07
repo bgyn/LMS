@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lms/client/config/theme/theme.dart';
-import 'package:lms/client/core/extension/estension.dart';
+import 'package:lms/shared/core/extension/estension.dart';
 
 class ProfileTextfield extends StatefulWidget {
   final String title;

@@ -1,5 +1,5 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:lms/client/core/faliure/faliure.dart';
+import 'package:lms/shared/core/faliure/faliure.dart';
 import 'package:lms/client/feature/password_reset/data/source/remote/password_reset_api_service.dart';
 import 'package:lms/client/feature/password_reset/domain/repository/password_reset_repository.dart';
 

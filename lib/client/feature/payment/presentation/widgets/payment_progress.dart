@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/client/config/theme/theme.dart';
-import 'package:lms/client/core/extension/estension.dart';
+import 'package:lms/shared/core/extension/estension.dart';
 import 'package:lms/client/feature/payment/presentation/cubit/progress_cubit.dart';
 
 class PaymentProgress extends StatelessWidget {

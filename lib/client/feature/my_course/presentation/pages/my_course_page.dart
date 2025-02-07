@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lms/client/core/extension/estension.dart';
+import 'package:lms/shared/core/extension/estension.dart';
 import 'package:lms/client/feature/my_course/presentation/bloc/my_course_bloc.dart';
 import 'package:lms/client/feature/my_course/presentation/bloc/my_course_state.dart';
 import 'package:lms/client/feature/my_course/presentation/widgets/my_course_grid.dart';

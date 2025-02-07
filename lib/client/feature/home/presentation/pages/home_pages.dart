@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lms/client/config/route/route_path.dart';
 import 'package:lms/client/config/theme/theme.dart';
-import 'package:lms/client/core/extension/estension.dart';
+import 'package:lms/shared/core/extension/estension.dart';
 import 'package:lms/client/feature/course/presentation/bloc/course_bloc.dart';
 import 'package:lms/client/feature/course/presentation/bloc/course_event.dart';
 import 'package:lms/client/feature/course/presentation/widgets/course_grid.dart';

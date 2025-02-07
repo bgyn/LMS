@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:lms/client/core/faliure/faliure.dart';
-import 'package:lms/client/core/usecase/usecase.dart';
+import 'package:lms/shared/core/faliure/faliure.dart';
+import 'package:lms/shared/core/usecase/usecase.dart';
 import 'package:lms/client/feature/notifications/domain/model/notification_model.dart';
 import 'package:lms/client/feature/notifications/domain/repository/notifications_repository.dart';
 

@@ -1,5 +1,5 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:lms/client/core/faliure/faliure.dart';
+import 'package:lms/shared/core/faliure/faliure.dart';
 import 'package:lms/client/feature/auth/data/source/localsource/auth_local_service.dart';
 import 'package:lms/client/feature/auth/data/source/remote/auth_api_service.dart';
 import 'package:lms/client/feature/auth/domain/repository/auth_repository.dart';

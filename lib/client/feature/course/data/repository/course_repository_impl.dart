@@ -1,5 +1,5 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:lms/client/core/faliure/faliure.dart';
+import 'package:lms/shared/core/faliure/faliure.dart';
 import 'package:lms/client/feature/course/data/data/remote/course_api_service.dart';
 import 'package:lms/client/feature/course/domain/model/course_model.dart';
 import 'package:lms/client/feature/course/domain/repository/course_repository.dart';

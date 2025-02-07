@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/client/config/theme/theme.dart';
 import 'package:lms/client/core/constants/strings.dart';
-import 'package:lms/client/core/extension/estension.dart';
+import 'package:lms/shared/core/extension/estension.dart';
 import 'package:lms/client/core/utils/get_time_difference.dart';
 import 'package:lms/client/feature/notifications/presentation/bloc/notification_bloc.dart';
 import 'package:lms/client/feature/notifications/presentation/bloc/notification_event.dart';

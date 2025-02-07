@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lms/client/core/extension/estension.dart';
+import 'package:lms/shared/core/extension/estension.dart';
 import 'package:lms/client/feature/course/domain/model/course_model.dart';
 
 class Overview extends StatelessWidget {

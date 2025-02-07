@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/client/core/constants/images.dart';
-import 'package:lms/client/core/extension/estension.dart';
+import 'package:lms/shared/core/extension/estension.dart';
 import 'package:lms/client/feature/payment/presentation/bloc/payment_bloc.dart';
 import 'package:lms/client/feature/payment/presentation/bloc/payment_state.dart';
 

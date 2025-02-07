@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lms/client/config/theme/theme.dart';
 import 'package:lms/client/core/constants/images.dart';
 import 'package:lms/client/core/constants/strings.dart';
-import 'package:lms/client/core/extension/estension.dart';
+import 'package:lms/shared/core/extension/estension.dart';
 import 'package:lms/client/core/utils/shared_utility.dart';
 import 'package:lms/client/feature/onboarding/presentation/cubit/onboarding_cubit.dart';
 

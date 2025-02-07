@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:lms/client/core/faliure/faliure.dart';
-import 'package:lms/client/core/usecase/usecase.dart';
+import 'package:lms/shared/core/faliure/faliure.dart';
+import 'package:lms/shared/core/usecase/usecase.dart';
 import 'package:lms/client/feature/auth/domain/repository/auth_repository.dart';
 
 class Singout extends UseCase<void, void> {

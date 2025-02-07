@@ -1,5 +1,5 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:lms/client/core/faliure/faliure.dart';
+import 'package:lms/shared/core/faliure/faliure.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, void>> signInWithEmailAndPassword(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lms/client/core/extension/estension.dart';
+import 'package:lms/shared/core/extension/estension.dart';
 
 class ColorPalette {
   const ColorPalette();
