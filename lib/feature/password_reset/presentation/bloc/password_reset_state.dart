@@ -6,7 +6,10 @@ class PasswordResetLoading extends PasswordResetState {}
 
 class PasswordResetRequestSuccess extends PasswordResetState {}
 
-class PasswordOtpVerifySuccess extends PasswordResetState {}
+class PasswordOtpVerifySuccess extends PasswordResetState {
+  final String resetToken;
+  PasswordOtpVerifySuccess(this.resetToken);
+}
 
 class PasswordResetRequestFailure extends PasswordResetState {
   final String message;

@@ -19,7 +19,7 @@ class PasswordResetApiService {
     }
   }
 
-  Future<void> passwordReset(String email, String password) async {
+  Future<void> passwordReset(String email, String password,String token) async {
     try {
       String url = UrlConstant.passwordReset();
       final response = await http.post(
@@ -27,6 +27,7 @@ class PasswordResetApiService {
         body: {
           "email": email,
           "password": password,
+          "token" : token,
         },
       );
       if (response.statusCode == 404) {
@@ -37,7 +38,7 @@ class PasswordResetApiService {
     }
   }
 
-  Future<void> verifyOtp(String email, String otp) async {
+  Future<String> verifyOtp(String email, String otp) async {
     try {
       String url = UrlConstant.verifyOtp();
       final response = await http.post(
@@ -47,9 +48,12 @@ class PasswordResetApiService {
           "otp": otp,
         },
       );
-
-      if (response.statusCode == 400 || response.statusCode == 404) {
+      if (response.statusCode == 200) {
+        return response.body;
+      } else if (response.statusCode == 400 || response.statusCode == 404) {
         throw Exception("Invalid OTP");
+      } else {
+        throw Exception("Unexpected error");
       }
     } catch (e) {
       throw Exception("Unexpected error: $e");

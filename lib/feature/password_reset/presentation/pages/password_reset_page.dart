@@ -13,7 +13,8 @@ import 'package:lms/feature/password_reset/presentation/bloc/password_reset_stat
 
 class PasswordResetPage extends StatefulWidget {
   final String email;
-  const PasswordResetPage({super.key, required this.email});
+  final String token;
+  const PasswordResetPage({super.key, required this.email,required this.token});  
 
   @override
   State<PasswordResetPage> createState() => _PasswordResetPageState();
@@ -23,6 +24,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +87,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                               if (_formKey.currentState?.validate() ?? false) {
                                 context.read<PasswordResetBloc>().add(
                                     PasswordReset(widget.email,
-                                        _passwordController.text));
+                                        _passwordController.text,widget.token));
                               }
                             },
                           )

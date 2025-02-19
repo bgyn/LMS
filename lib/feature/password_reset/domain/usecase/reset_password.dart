@@ -10,6 +10,6 @@ class ResetPassword extends UseCase<void, PasswordResetParams> {
 
   @override
   Future<Either<Failure, void>> call(PasswordResetParams params) async {
-    return await _repository.resetPassword(params.email, params.password);
+    return await _repository.resetPassword(params.email, params.password,params.token);
   }
 }

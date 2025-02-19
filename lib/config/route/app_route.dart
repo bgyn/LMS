@@ -136,8 +136,14 @@ final routeConfig = GoRouter(
     GoRoute(
       path: RoutePath.resetPassword,
       builder: (context, state) {
-        final email = state.extra as String;
-        return PasswordResetPage(email: email);
+        final res = state.extra as String;
+        final resDecoded = jsonDecode(res);
+        final email = resDecoded['email'];
+        final token = resDecoded['token'];
+        return PasswordResetPage(
+          email: email,
+          token: token,
+        );
       },
     ),
     GoRoute(

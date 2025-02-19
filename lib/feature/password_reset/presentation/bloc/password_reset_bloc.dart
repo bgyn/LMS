@@ -48,7 +48,7 @@ class PasswordResetBloc extends Bloc<PasswordResetEvent, PasswordResetState> {
         await _verifyOtp(VerifyOtpParams(email: event.email, otp: event.otp));
     result.fold(
       (failure) => emit(PasswordOtpVerifyFailure(failure.errorMessage)),
-      (success) => emit(PasswordOtpVerifySuccess()),
+      (success) => emit(PasswordOtpVerifySuccess(success)),
     );
   }
 
@@ -58,7 +58,7 @@ class PasswordResetBloc extends Bloc<PasswordResetEvent, PasswordResetState> {
   ) async {
     emit(PasswordResetLoading());
     final result = await _resetPassword(
-        PasswordResetParams(email: event.email, password: event.password));
+        PasswordResetParams(email: event.email, password: event.password,token: event.token));
     result.fold(
       (failure) => emit(PasswordResetFailure(failure.errorMessage)),
       (success) => emit(PasswordResetSuccess()),

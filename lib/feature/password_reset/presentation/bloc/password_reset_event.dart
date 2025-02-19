@@ -22,6 +22,7 @@ class PasswordResetOtpResend extends PasswordResetEvent {
 class PasswordReset extends PasswordResetEvent {
   final String email;
   final String password;
+  final String token;
 
-  PasswordReset(this.email, this.password);
+  PasswordReset(this.email, this.password,this.token);
 }

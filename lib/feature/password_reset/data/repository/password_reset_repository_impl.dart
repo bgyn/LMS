@@ -8,9 +8,9 @@ class PasswordResetRepositoryImpl extends PasswordResetRepository {
   PasswordResetRepositoryImpl(this._passwordResetApiService);
   @override
   Future<Either<Failure, void>> resetPassword(
-      String email, String password) async {
+      String email, String password,String token) async {
     try {
-      await _passwordResetApiService.passwordReset(email, password);
+      await _passwordResetApiService.passwordReset(email, password,token);
       return right(null);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
@@ -28,10 +28,10 @@ class PasswordResetRepositoryImpl extends PasswordResetRepository {
   }
 
   @override
-  Future<Either<Failure, void>> verifyOtp(String email, String otp) async {
+  Future<Either<Failure, String>> verifyOtp(String email, String otp) async {
     try {
-      await _passwordResetApiService.verifyOtp(email, otp);
-      return right(null);
+      final result = await _passwordResetApiService.verifyOtp(email, otp);
+      return right(result);
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
     }
